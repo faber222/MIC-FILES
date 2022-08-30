@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="first_cpu">
+		<CBX_INST_ENTRY INSTANCE_NAME="|first_cpu|BUSMUX:inst4|lpm_mux:$00000" CBX_FILE_NAME="mux_erc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|first_cpu|lpm_add_sub0:inst|lpm_add_sub:LPM_ADD_SUB_component" CBX_FILE_NAME="add_sub_tmg.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
