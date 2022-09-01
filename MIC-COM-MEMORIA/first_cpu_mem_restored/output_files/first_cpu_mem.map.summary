@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Thu Sep  1 11:22:10 2022
+Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
+Revision Name : first_cpu_mem
+Top-level Entity Name : first_cpu_mem
+Family : Cyclone IV E
+Total logic elements : 33
+    Total combinational functions : 33
+    Dedicated logic registers : 23
+Total registers : 23
+Total pins : 27
+Total virtual pins : 0
+Total memory bits : 2,560
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

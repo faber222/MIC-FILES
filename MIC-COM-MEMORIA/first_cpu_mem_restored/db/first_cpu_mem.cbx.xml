@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="first_cpu_mem">
+		<CBX_INST_ENTRY INSTANCE_NAME="|first_cpu_mem|BUSMUX:inst4|lpm_mux:$00000" CBX_FILE_NAME="mux_erc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|first_cpu_mem|LPM_ROM:inst1|altrom:srom|altsyncram:rom_block" CBX_FILE_NAME="altsyncram_7001.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|first_cpu_mem|lpm_add_sub0:inst|lpm_add_sub:LPM_ADD_SUB_component" CBX_FILE_NAME="add_sub_tmg.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

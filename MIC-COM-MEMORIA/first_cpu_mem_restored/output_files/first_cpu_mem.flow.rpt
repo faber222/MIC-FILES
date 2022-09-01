@@ -1,0 +1,130 @@
+Flow report for first_cpu_mem
+Thu Sep  1 11:22:46 2022
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------------+
+; Flow Summary                                                                          ;
++------------------------------------+--------------------------------------------------+
+; Flow Status                        ; Successful - Thu Sep  1 11:22:45 2022            ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
+; Revision Name                      ; first_cpu_mem                                    ;
+; Top-level Entity Name              ; first_cpu_mem                                    ;
+; Family                             ; Cyclone IV E                                     ;
+; Device                             ; EP4CE115F29C7                                    ;
+; Timing Models                      ; Final                                            ;
+; Total logic elements               ; 33 / 114,480 ( < 1 % )                           ;
+;     Total combinational functions  ; 33 / 114,480 ( < 1 % )                           ;
+;     Dedicated logic registers      ; 23 / 114,480 ( < 1 % )                           ;
+; Total registers                    ; 23                                               ;
+; Total pins                         ; 27 / 529 ( 5 % )                                 ;
+; Total virtual pins                 ; 0                                                ;
+; Total memory bits                  ; 2,560 / 3,981,312 ( < 1 % )                      ;
+; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                                  ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                    ;
++------------------------------------+--------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 09/01/2022 11:22:07 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; first_cpu_mem       ;
++-------------------+---------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                    ;
++-------------------------------------+--------------------------------+---------------+-------------+----------------+
+; Assignment Name                     ; Value                          ; Default Value ; Entity Name ; Section Id     ;
++-------------------------------------+--------------------------------+---------------+-------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 30902523540141.166204212714448 ; --            ; --          ; --             ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST     ; On                             ; --            ; --          ; eda_simulation ;
+; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                    ; --            ; --          ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)      ; <None>        ; --          ; --             ;
+; IP_TOOL_NAME                        ; LPM_ADD_SUB                    ; --            ; --          ; --             ;
+; IP_TOOL_VERSION                     ; 13.0                           ; --            ; --          ; --             ;
+; MISC_FILE                           ; lpm_add_sub0.bsf               ; --            ; --          ; --             ;
+; MISC_FILE                           ; lpm_add_sub0.cmp               ; --            ; --          ; --             ;
+; PARTITION_COLOR                     ; 16764057                       ; --            ; --          ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING          ; --            ; --          ; Top            ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                         ; --            ; --          ; Top            ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                   ; --            ; --          ; --             ;
++-------------------------------------+--------------------------------+---------------+-------------+----------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 404 MB              ; 00:00:02                           ;
+; Fitter                    ; 00:00:16     ; 1.6                     ; 741 MB              ; 00:00:23                           ;
+; Assembler                 ; 00:00:06     ; 1.0                     ; 346 MB              ; 00:00:06                           ;
+; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 434 MB              ; 00:00:03                           ;
+; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 303 MB              ; 00:00:01                           ;
+; Total                     ; 00:00:27     ; --                      ; --                  ; 00:00:35                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                                 ;
++---------------------------+--------------------+------------------+------------+----------------+
+; Module Name               ; Machine Hostname   ; OS Name          ; OS Version ; Processor type ;
++---------------------------+--------------------+------------------+------------+----------------+
+; Analysis & Synthesis      ; sj-lin-sidi-756049 ; Debian GNU/Linux ; 9          ; x86_64         ;
+; Fitter                    ; sj-lin-sidi-756049 ; Debian GNU/Linux ; 9          ; x86_64         ;
+; Assembler                 ; sj-lin-sidi-756049 ; Debian GNU/Linux ; 9          ; x86_64         ;
+; TimeQuest Timing Analyzer ; sj-lin-sidi-756049 ; Debian GNU/Linux ; 9          ; x86_64         ;
+; EDA Netlist Writer        ; sj-lin-sidi-756049 ; Debian GNU/Linux ; 9          ; x86_64         ;
++---------------------------+--------------------+------------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off first_cpu_mem -c first_cpu_mem
+quartus_fit --read_settings_files=off --write_settings_files=off first_cpu_mem -c first_cpu_mem
+quartus_asm --read_settings_files=off --write_settings_files=off first_cpu_mem -c first_cpu_mem
+quartus_sta first_cpu_mem -c first_cpu_mem
+quartus_eda --read_settings_files=off --write_settings_files=off first_cpu_mem -c first_cpu_mem
+
+
+
