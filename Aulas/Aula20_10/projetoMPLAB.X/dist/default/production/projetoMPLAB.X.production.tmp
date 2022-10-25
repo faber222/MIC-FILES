@@ -1,12 +1,12 @@
 <ASSEMBLER_INFO>
  <VERSION>2.2.7</VERSION>
  <DEVICE>"ATmega328P"</DEVICE>
- <WORKING_DIR>/home/aluno/Downloads/MIC-FILES/Aulas/Aula20_10/projetoMPLAB.X</WORKING_DIR>
+ <WORKING_DIR>/home/aluno/faber/MIC-FILES/Aulas/Aula20_10/projetoMPLAB.X</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>Aula20_10.asm</SOURCE_FILE>
+ <SOURCE_FILE>Aula25_10.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -21,8 +21,7 @@
   <FILE>dist/default/production/projetoMPLAB.X.production.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <start><FILE>Aula20_10.asm</FILE><LINE>4</LINE></start>
-  <waitUM><FILE>Aula20_10.asm</FILE><LINE>12</LINE></waitUM>
-  <waitZERO><FILE>Aula20_10.asm</FILE><LINE>15</LINE></waitZERO>
+  <setup><FILE>Aula25_10.asm</FILE><LINE>3</LINE></setup>
+  <loop><FILE>Aula25_10.asm</FILE><LINE>7</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>

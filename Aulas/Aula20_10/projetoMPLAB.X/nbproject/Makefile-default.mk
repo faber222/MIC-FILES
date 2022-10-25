@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Aula13_10.Asm Aula20_10.asm
+SOURCEFILES_QUOTED_IF_SPACED=Aula13_10.Asm Aula20_10.asm Aula25_10.asm
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Aula13_10.o ${OBJECTDIR}/Aula20_10.obj
-POSSIBLE_DEPFILES=${OBJECTDIR}/Aula13_10.o.d ${OBJECTDIR}/Aula20_10.obj.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Aula13_10.o ${OBJECTDIR}/Aula20_10.obj ${OBJECTDIR}/Aula25_10.obj
+POSSIBLE_DEPFILES=${OBJECTDIR}/Aula13_10.o.d ${OBJECTDIR}/Aula20_10.obj.d ${OBJECTDIR}/Aula25_10.obj.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Aula13_10.o ${OBJECTDIR}/Aula20_10.obj
+OBJECTFILES=${OBJECTDIR}/Aula13_10.o ${OBJECTDIR}/Aula20_10.obj ${OBJECTDIR}/Aula25_10.obj
 
 # Source Files
-SOURCEFILES=Aula13_10.Asm Aula20_10.asm
+SOURCEFILES=Aula13_10.Asm Aula20_10.asm Aula25_10.asm
 
 # Pack Options 
 PACK_ASSEMBLER_OPTIONS=-I "${DFP_DIR}/avrasm/inc"  -i m328Pdef.inc
@@ -106,6 +106,11 @@ ${OBJECTDIR}/Aula20_10.obj: Aula20_10.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/Aula20_10.obj 
 	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.tmp Aula20_10.asm
+${OBJECTDIR}/Aula25_10.obj: Aula25_10.asm  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Aula25_10.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.tmp Aula25_10.asm
 else
 ${OBJECTDIR}/Aula13_10.o: Aula13_10.Asm  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
@@ -117,6 +122,11 @@ ${OBJECTDIR}/Aula20_10.obj: Aula20_10.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/Aula20_10.obj 
 	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.map  -l dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.lss Aula20_10.asm
+${OBJECTDIR}/Aula25_10.obj: Aula25_10.asm  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Aula25_10.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.map  -l dist/${CND_CONF}/${IMAGE_TYPE}/projetoMPLAB.X.${IMAGE_TYPE}.lss Aula25_10.asm
 endif
 
 # ------------------------------------------------------------------------------------

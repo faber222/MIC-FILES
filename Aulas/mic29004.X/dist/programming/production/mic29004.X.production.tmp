@@ -1,0 +1,27 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>/home/aluno/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>Aula25_10P3.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>dist/programming/production/mic29004.X.production.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>dist/programming/production/mic29004.X.production.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>dist/programming/production/mic29004.X.production.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <setup><FILE>Aula25_10P3.asm</FILE><LINE>6</LINE></setup>
+  <naoPress><FILE>Aula25_10P3.asm</FILE><LINE>15</LINE></naoPress>
+  <press><FILE>Aula25_10P3.asm</FILE><LINE>20</LINE></press>
+ </LABELS>
+</ASSEMBLER_INFO>
