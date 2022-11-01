@@ -11,20 +11,20 @@
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
  <OBJECT_FILES>
-  <FILE>dist/programming/production/mic29004.X.production.obj</FILE>
+  <FILE>dist/programming/debug/mic29004.X.debug.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
-  <FILE>dist/programming/production/mic29004.X.production.hex</FILE>
+  <FILE>Aula25_10P3.hex</FILE>
  </HEX_FILES>
  <OUTPUT_FILES>
-  <FILE>dist/programming/production/mic29004.X.production.map</FILE>
+  <FILE>dist/programming/debug/mic29004.X.debug.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
   <setup><FILE>Aula25_10P3.asm</FILE><LINE>14</LINE></setup>
   <naoPress><FILE>Aula25_10P3.asm</FILE><LINE>23</LINE></naoPress>
   <pressSelecao><FILE>Aula25_10P3.asm</FILE><LINE>30</LINE></pressSelecao>
   <desligaLedSelecao><FILE>Aula25_10P3.asm</FILE><LINE>51</LINE></desligaLedSelecao>
-  <ligaLedSelecao><FILE>Aula25_10P3.asm</FILE><LINE>66</LINE></ligaLedSelecao>
+  <ligaLedSelecao><FILE>Aula25_10P3.asm</FILE><LINE>68</LINE></ligaLedSelecao>
   <pressAjuste><FILE>Aula25_10P3.asm</FILE><LINE>37</LINE></pressAjuste>
   <ligaLedAjuste><FILE>Aula25_10P3.asm</FILE><LINE>58</LINE></ligaLedAjuste>
   <desligaLedAjuste><FILE>Aula25_10P3.asm</FILE><LINE>44</LINE></desligaLedAjuste>
