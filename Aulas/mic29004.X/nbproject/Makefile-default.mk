@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Aula25_10P3.asm
+SOURCEFILES_QUOTED_IF_SPACED=Aula03_11P5.asm
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Aula25_10P3.obj
-POSSIBLE_DEPFILES=${OBJECTDIR}/Aula25_10P3.obj.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Aula03_11P5.obj
+POSSIBLE_DEPFILES=${OBJECTDIR}/Aula03_11P5.obj.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Aula25_10P3.obj
+OBJECTFILES=${OBJECTDIR}/Aula03_11P5.obj
 
 # Source Files
-SOURCEFILES=Aula25_10P3.asm
+SOURCEFILES=Aula03_11P5.asm
 
 # Pack Options 
 PACK_ASSEMBLER_OPTIONS=-I "${DFP_DIR}/avrasm/inc"  -i m328Pdef.inc
@@ -96,17 +96,17 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/Aula25_10P3.obj: Aula25_10P3.asm  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/Aula03_11P5.obj: Aula03_11P5.asm  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Aula25_10P3.obj 
-	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp Aula25_10P3.asm
+	@${RM} ${OBJECTDIR}/Aula03_11P5.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp Aula03_11P5.asm
 else
-${OBJECTDIR}/Aula25_10P3.obj: Aula25_10P3.asm  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/Aula03_11P5.obj: Aula03_11P5.asm  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Aula25_10P3.obj 
-	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -l dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.lss Aula25_10P3.asm
+	@${RM} ${OBJECTDIR}/Aula03_11P5.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -l dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.lss Aula03_11P5.asm
 endif
 
 # ------------------------------------------------------------------------------------

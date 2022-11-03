@@ -6,7 +6,7 @@
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>Aula25_10P2.asm</SOURCE_FILE>
+ <SOURCE_FILE>Aula03_11P5.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -14,15 +14,16 @@
   <FILE>dist/default/debug/mic29004.X.debug.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
-  <FILE>Aula25_10P2.hex</FILE>
+  <FILE>Aula03_11P5.hex</FILE>
  </HEX_FILES>
  <OUTPUT_FILES>
   <FILE>dist/default/debug/mic29004.X.debug.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <start><FILE>Aula25_10P2.asm</FILE><LINE>3</LINE></start>
-  <main><FILE>Aula25_10P2.asm</FILE><LINE>7</LINE></main>
-  <loop><FILE>Aula25_10P2.asm</FILE><LINE>11</LINE></loop>
-  <loop2><FILE>Aula25_10P2.asm</FILE><LINE>22</LINE></loop2>
+  <A1><FILE>Aula03_11P5.asm</FILE><LINE>4</LINE></A1>
+  <A2><FILE>Aula03_11P5.asm</FILE><LINE>5</LINE></A2>
+  <A3><FILE>Aula03_11P5.asm</FILE><LINE>6</LINE></A3>
+  <A4><FILE>Aula03_11P5.asm</FILE><LINE>7</LINE></A4>
+  <startA23><FILE>Aula03_11P5.asm</FILE><LINE>11</LINE></startA23>
  </LABELS>
 </ASSEMBLER_INFO>
