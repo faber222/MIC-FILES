@@ -6,7 +6,7 @@
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>Aula03_11P5.asm</SOURCE_FILE>
+ <SOURCE_FILE>Aula08_11P3.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -21,10 +21,9 @@
   <FILE>dist/default/production/mic29004.X.production.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <A1><FILE>Aula03_11P5.asm</FILE><LINE>4</LINE></A1>
-  <A2><FILE>Aula03_11P5.asm</FILE><LINE>5</LINE></A2>
-  <A3><FILE>Aula03_11P5.asm</FILE><LINE>6</LINE></A3>
-  <A4><FILE>Aula03_11P5.asm</FILE><LINE>7</LINE></A4>
-  <startA23><FILE>Aula03_11P5.asm</FILE><LINE>11</LINE></startA23>
+  <start><FILE>Aula08_11P3.asm</FILE><LINE>4</LINE></start>
+  <main><FILE>Aula08_11P3.asm</FILE><LINE>8</LINE></main>
+  <delay><FILE>Aula08_11P3.asm</FILE><LINE>21</LINE></delay>
+  <loop><FILE>Aula08_11P3.asm</FILE><LINE>30</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>
