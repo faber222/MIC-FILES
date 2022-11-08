@@ -1,0 +1,39 @@
+
+.INCLUDE <m328Pdef.inc>
+; Replace with your application code
+.DSEG
+    A1: .BYTE 12 ;Define vetor A1 com 12 bytes
+    A2: .BYTE 12 ;Define vetor A2 com 12 bytes
+    A3: .BYTE 12 ;Define vetor A3 com 12 bytes
+    A4: .BYTE 8 ;Define vetor A4 com 8 bytes
+ 
+ .CSEG
+ 
+    LDI XH, HIGH(A2) ;Carrega um ponteiro para a parte alta de A2
+    LDI XL, LOW(A2) ;Carrega um ponteiro para a parte baixa de A2
+    
+    loopA2:
+	INC R17 ;Incrementa em uma unidade o R17
+	st X+, R17 ;Carrega o valor de R17 dentro do ponteiro X, já incrementando-o
+	CPI R17, 12 ;Verifica se o registrador R17 é igual à constante 12
+	BREQ loopA3 ;Caso seja igual, pula para o loop A3
+	rjmp loopA2 ;Enquanto R17 != 12 continua executando o loop
+	   
+    LDI XH, HIGH(A3) ;Carrega um ponteiro para a parte alta de A2
+    LDI XL, LOW(A3) ;Carrega um ponteiro para a parte baixa de A2
+    
+    loopA3:
+	INC R16 ;Incrementa em uma unidade o R16
+	st X+, R16 ;Carrega o valor de R16 dentro do ponteiro X, já incrementando-o
+	CPI R16, 12 ;Verifica se o registrador R16 é igual à constante 12
+	BREQ LoopA1 ;Caso seja igual, pula para o loop A3
+	rjmp loopA3 ;Enquanto R16 != 12 continua executando o loop
+	
+
+    LDI XH, HIGH(A2) ;Carrega um ponteiro para a parte alta de A2
+    LDI XL, LOW(A2) ;Carrega um ponteiro para a parte baixa de A2
+    LDI ZH, HIGH(A1) ;Carrega um ponteiro para a parte alta de A1
+    LDI ZL, LOW(A1) ;Carrega um ponteiro para a parte baixa de A1
+
+	
+	
