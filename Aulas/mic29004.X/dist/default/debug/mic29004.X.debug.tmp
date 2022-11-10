@@ -6,7 +6,7 @@
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>Aula08_11P3.asm</SOURCE_FILE>
+ <SOURCE_FILE>TRABALHO10_11.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -14,15 +14,15 @@
   <FILE>dist/default/debug/mic29004.X.debug.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
-  <FILE>Aula08_11P3.hex</FILE>
+  <FILE>TRABALHO10_11.hex</FILE>
  </HEX_FILES>
  <OUTPUT_FILES>
   <FILE>dist/default/debug/mic29004.X.debug.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <start><FILE>Aula08_11P3.asm</FILE><LINE>4</LINE></start>
-  <main><FILE>Aula08_11P3.asm</FILE><LINE>8</LINE></main>
-  <delay><FILE>Aula08_11P3.asm</FILE><LINE>21</LINE></delay>
-  <loop><FILE>Aula08_11P3.asm</FILE><LINE>30</LINE></loop>
+  <pressSelecao><FILE>TRABALHO10_11.asm</FILE><LINE>23</LINE></pressSelecao>
+  <loop><FILE>TRABALHO10_11.asm</FILE><LINE>36</LINE></loop>
+  <pressAjuste><FILE>TRABALHO10_11.asm</FILE><LINE>30</LINE></pressAjuste>
+  <loop2><FILE>TRABALHO10_11.asm</FILE><LINE>41</LINE></loop2>
  </LABELS>
 </ASSEMBLER_INFO>

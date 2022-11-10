@@ -1,23 +1,37 @@
-;DEFINI¸C~OES
-.equ LED = PB5 ;LED ´e o substituto de PB5
-.equ TEMPO = 60
+.def AUX = R16 ;R16 tem agora o nome de AUX
+.equ TEMPO = 16
 
-start:
-    ldi R16,0xFF ;carrega R16 com o valor 0xFF
-    out DDRB,R16 ;PORTB inteira como sa´?da
+setup:
+ldi AUX,0b11111111 
+out DDRD,AUX
+out PORTD,AUX 
 
-main:
-    sbi PORTB, LED ;coloca o pino PB5 em 5V
+cbi DDRB,PB0
+cbi DDRB,PB1
+sbi PORTB,PB0
+sbi PORTB,PB1
+
+
+main: 
+rcall loopL  
+ldi r19,TEMPO
+rcall delay ;chama a sub-rotina de atraso
+
+rjmp main ;volta para main
     
-    ldi r19,TEMPO
-    rcall delay ;chama a sub-rotina de atraso
-    
-    cbi PORTB, LED ;coloca o pino PB5 em 0V
-    
-    ldi r19,TEMPO
-    
-    rcall delay ;chama a sub-rotina de atraso
-    rjmp main ;volta para main
+
+loopL:
+ 
+ rol r16 ; antes de simular essa linha pela primeira vez...
+ 
+ ; ... verifique que o CARRY é zero
+ret
+ 
+loopR:
+ ror r16
+ 
+ret
+
 
 ;--------------------------------------------------------------
 ;SUB-ROTINA DE ATRASO Program´avel
@@ -48,4 +62,3 @@ loop:
     pop r17 ; ... r17 da pilha
 
     ret
-    

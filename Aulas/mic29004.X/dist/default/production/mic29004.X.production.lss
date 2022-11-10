@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  Aula08_11P3.asm Tue Nov  8 10:57:39 2022
+AVRASM ver. 2.2.7  TRABALHO10_11.asm Thu Nov 10 11:26:53 2022
 
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
                                  
-                                 ;DEFINI¸C~OES
+                                 .def AUX = R16 ;R16 tem agora o nome de AUX
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega328P.xml **********
                                  ;*************************************************************************
@@ -985,18 +985,39 @@ AVRASM ver. 2.2.7  Aula08_11P3.asm Tue Nov  8 10:57:39 2022
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 .equ LED = PB5 ;LED ´e o substituto de PB5
+                                 .equ TEMPO = 16
                                  
-                                 start:
-000000 ef0f                          ldi R16,0xFF ;carrega R16 com o valor 0xFF
-000001 b904                          out DDRB,R16 ;PORTB inteira como sa´?da
+                                 setup:
+000000 ef0f                      ldi AUX,0b11111111 
+000001 b90a                      out DDRD,AUX
+000002 b90b                      out PORTD,AUX 
                                  
-                                 main:
-000002 9a2d                          sbi PORTB, LED ;coloca o pino PB5 em 5V
-000003 d003                          rcall delay ;chama a sub-rotina de atraso
-000004 982d                          cbi PORTB, LED ;coloca o pino PB5 em 0V
-000005 d001                          rcall delay ;chama a sub-rotina de atraso
-000006 cffb                          rjmp main ;volta para main
+000003 9820                      cbi DDRB,PB0
+000004 9821                      cbi DDRB,PB1
+000005 9a28                      sbi PORTB,PB0
+000006 9a29                      sbi PORTB,PB1
+                                 
+                                 
+                                 main: 
+000007 d003                      rcall loopL  
+000008 e130                      ldi r19,TEMPO
+000009 d005                      rcall delay ;chama a sub-rotina de atraso
+                                 
+00000a cffc                      rjmp main ;volta para main
+                                     
+                                 
+                                 loopL:
+                                  
+00000b 1f00                       rol r16 ; antes de simular essa linha pela primeira vez...
+                                  
+                                  ; ... verifique que o CARRY é zero
+00000c 9508                      ret
+                                  
+                                 loopR:
+00000d 9507                       ror r16
+                                  
+00000e 9508                      ret
+                                 
                                  
                                  ;--------------------------------------------------------------
                                  ;SUB-ROTINA DE ATRASO Program´avel
@@ -1005,26 +1026,26 @@ AVRASM ver. 2.2.7  Aula08_11P3.asm Tue Nov  8 10:57:39 2022
                                  ; - R19 = 80 --> 1s
                                  ;--------------------------------------------------------------
                                  delay:
-000007 931f                          push r17 ; Salva os valores de r17,
-000008 932f                          push r18 ; ... r18,
-000009 b71f                          in r17,SREG ; ...
-00000a 931f                          push r17 ; ... e SREG na pilha.
+00000f 931f                          push r17 ; Salva os valores de r17,
+000010 932f                          push r18 ; ... r18,
+000011 b71f                          in r17,SREG ; ...
+000012 931f                          push r17 ; ... e SREG na pilha.
                                  
                                  ; Executa sub-rotina :
-00000b 2711                          clr r17
-00000c 2722                          clr r18
+000013 2711                          clr r17
+000014 2722                          clr r18
                                  loop:
-00000d 951a                          dec R17 ;decrementa R17, come¸ca com 0x00
-00000e f7f1                          brne loop ;enquanto R17 > 0 fica decrementando R17
-00000f 952a                          dec R18 ;decrementa R18, come¸ca com 0x00
-000010 f7e1                          brne loop ;enquanto R18 > 0 volta decrementar R18
-000011 953a                          dec R19 ;decrementa R19
-000012 f7d1                          brne loop ;enquanto R19 > 0 vai para volta
+000015 951a                          dec R17 ;decrementa R17, come¸ca com 0x00
+000016 f7f1                          brne loop ;enquanto R17 > 0 fica decrementando R17
+000017 952a                          dec R18 ;decrementa R18, come¸ca com 0x00
+000018 f7e1                          brne loop ;enquanto R18 > 0 volta decrementar R18
+000019 953a                          dec R19 ;decrementa R19
+00001a f7d1                          brne loop ;enquanto R19 > 0 vai para volta
                                  
-000013 911f                          pop r17
-000014 bf1f                          out SREG, r17 ; Restaura os valores de SREG,
-000015 912f                          pop r18 ; ... r18
-000016 911f                          pop r17 ; ... r17 da pilha
+00001b 911f                          pop r17
+00001c bf1f                          out SREG, r17 ; Restaura os valores de SREG,
+00001d 912f                          pop r18 ; ... r18
+00001e 911f                          pop r17 ; ... r17 da pilha
                                  
 
 
@@ -1045,7 +1066,7 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   2 r17:   8 r18:   4 r19:   1 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:   5 r17:   8 r18:   4 r19:   2 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
 Registers used: 4 out of 35 (11.4%)
@@ -1056,26 +1077,26 @@ andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   1 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   2 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   2 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   0 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   1 lds   :   0 lpm   :   0 lsl   :   0 
+ld    :   0 ldd   :   0 ldi   :   2 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   2 pop   :   3 
-push  :   3 rcall :   2 ret   :   1 reti  :   0 rjmp  :   1 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   1 sbic  :   0 sbis  :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   3 pop   :   3 
+push  :   3 rcall :   2 ret   :   3 reti  :   0 rjmp  :   1 rol   :   1 
+ror   :   1 sbc   :   0 sbci  :   0 sbi   :   2 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 13 out of 113 (11.5%)
+Instructions used: 15 out of 113 (13.3%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000030     48      0     48   32768   0.1%
+[.cseg] 0x000000 0x000040     64      0     64   32768   0.2%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

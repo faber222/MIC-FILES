@@ -6,7 +6,7 @@
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>Aula08_11P3.asm</SOURCE_FILE>
+ <SOURCE_FILE>Aula25_10P3.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -20,9 +20,13 @@
   <FILE>dist/programming/production/mic29004.X.production.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <delay><FILE>Aula08_11P3.asm</FILE><LINE>9</LINE></delay>
-  <loop><FILE>Aula08_11P3.asm</FILE><LINE>18</LINE></loop>
-  <start><FILE>Aula08_11P3.asm</FILE><LINE>33</LINE></start>
-  <main><FILE>Aula08_11P3.asm</FILE><LINE>37</LINE></main>
+  <setup><FILE>Aula25_10P3.asm</FILE><LINE>14</LINE></setup>
+  <naoPress><FILE>Aula25_10P3.asm</FILE><LINE>23</LINE></naoPress>
+  <pressSelecao><FILE>Aula25_10P3.asm</FILE><LINE>30</LINE></pressSelecao>
+  <desligaLedSelecao><FILE>Aula25_10P3.asm</FILE><LINE>51</LINE></desligaLedSelecao>
+  <ligaLedSelecao><FILE>Aula25_10P3.asm</FILE><LINE>66</LINE></ligaLedSelecao>
+  <pressAjuste><FILE>Aula25_10P3.asm</FILE><LINE>37</LINE></pressAjuste>
+  <ligaLedAjuste><FILE>Aula25_10P3.asm</FILE><LINE>58</LINE></ligaLedAjuste>
+  <desligaLedAjuste><FILE>Aula25_10P3.asm</FILE><LINE>44</LINE></desligaLedAjuste>
  </LABELS>
 </ASSEMBLER_INFO>
