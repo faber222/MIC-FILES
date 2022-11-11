@@ -1,7 +1,7 @@
 <ASSEMBLER_INFO>
  <VERSION>2.2.7</VERSION>
  <DEVICE>"ATmega328P"</DEVICE>
- <WORKING_DIR>/home/aluno/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
+ <WORKING_DIR>/home/faber222/Documents/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
@@ -21,11 +21,12 @@
   <FILE>dist/default/production/mic29004.X.production.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <setup><FILE>TRABALHO10_11.asm</FILE><LINE>4</LINE></setup>
-  <main><FILE>TRABALHO10_11.asm</FILE><LINE>15</LINE></main>
-  <loopL><FILE>TRABALHO10_11.asm</FILE><LINE>23</LINE></loopL>
-  <delay><FILE>TRABALHO10_11.asm</FILE><LINE>42</LINE></delay>
-  <loopR><FILE>TRABALHO10_11.asm</FILE><LINE>30</LINE></loopR>
-  <loop><FILE>TRABALHO10_11.asm</FILE><LINE>51</LINE></loop>
+  <setup><FILE>TRABALHO10_11.asm</FILE><LINE>5</LINE></setup>
+  <pressSelecao><FILE>TRABALHO10_11.asm</FILE><LINE>16</LINE></pressSelecao>
+  <pressAjuste><FILE>TRABALHO10_11.asm</FILE><LINE>27</LINE></pressAjuste>
+  <loopR><FILE>TRABALHO10_11.asm</FILE><LINE>44</LINE></loopR>
+  <delay><FILE>TRABALHO10_11.asm</FILE><LINE>57</LINE></delay>
+  <loopL><FILE>TRABALHO10_11.asm</FILE><LINE>38</LINE></loopL>
+  <loop><FILE>TRABALHO10_11.asm</FILE><LINE>66</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>
