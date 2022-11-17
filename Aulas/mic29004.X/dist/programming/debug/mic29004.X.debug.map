@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  ProvaAI.asm Thu Nov 17 11:31:26 2022
+AVRASM ver. 2.2.7  ProvaAI.asm Thu Nov 17 11:16:19 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -703,4 +703,4 @@ CSEG start        00000006
 CSEG startA23     00000009
 CSEG loopResetado 0000000d
 CSEG pressAjuste  00000010
-CSEG loopBotao    00000016
+CSEG led          00000018

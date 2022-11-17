@@ -6,7 +6,7 @@
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>Aula25_10P3.asm</SOURCE_FILE>
+ <SOURCE_FILE>ProvaAI.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -14,19 +14,18 @@
   <FILE>dist/programming/debug/mic29004.X.debug.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
-  <FILE>Aula25_10P3.hex</FILE>
+  <FILE>ProvaAI.hex</FILE>
  </HEX_FILES>
  <OUTPUT_FILES>
   <FILE>dist/programming/debug/mic29004.X.debug.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <setup><FILE>Aula25_10P3.asm</FILE><LINE>14</LINE></setup>
-  <naoPress><FILE>Aula25_10P3.asm</FILE><LINE>23</LINE></naoPress>
-  <pressSelecao><FILE>Aula25_10P3.asm</FILE><LINE>30</LINE></pressSelecao>
-  <desligaLedSelecao><FILE>Aula25_10P3.asm</FILE><LINE>51</LINE></desligaLedSelecao>
-  <ligaLedSelecao><FILE>Aula25_10P3.asm</FILE><LINE>68</LINE></ligaLedSelecao>
-  <pressAjuste><FILE>Aula25_10P3.asm</FILE><LINE>37</LINE></pressAjuste>
-  <ligaLedAjuste><FILE>Aula25_10P3.asm</FILE><LINE>58</LINE></ligaLedAjuste>
-  <desligaLedAjuste><FILE>Aula25_10P3.asm</FILE><LINE>44</LINE></desligaLedAjuste>
+  <A1><FILE>ProvaAI.asm</FILE><LINE>5</LINE></A1>
+  <setup><FILE>ProvaAI.asm</FILE><LINE>11</LINE></setup>
+  <start><FILE>ProvaAI.asm</FILE><LINE>21</LINE></start>
+  <startA23><FILE>ProvaAI.asm</FILE><LINE>27</LINE></startA23>
+  <loopResetado><FILE>ProvaAI.asm</FILE><LINE>33</LINE></loopResetado>
+  <pressAjuste><FILE>ProvaAI.asm</FILE><LINE>39</LINE></pressAjuste>
+  <led><FILE>ProvaAI.asm</FILE><LINE>53</LINE></led>
  </LABELS>
 </ASSEMBLER_INFO>

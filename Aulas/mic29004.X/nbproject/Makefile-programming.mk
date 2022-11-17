@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=PilhaeSubrotinasTarefa.asm
+SOURCEFILES_QUOTED_IF_SPACED=ProvaAI.asm
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/PilhaeSubrotinasTarefa.obj
-POSSIBLE_DEPFILES=${OBJECTDIR}/PilhaeSubrotinasTarefa.obj.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/ProvaAI.obj
+POSSIBLE_DEPFILES=${OBJECTDIR}/ProvaAI.obj.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/PilhaeSubrotinasTarefa.obj
+OBJECTFILES=${OBJECTDIR}/ProvaAI.obj
 
 # Source Files
-SOURCEFILES=PilhaeSubrotinasTarefa.asm
+SOURCEFILES=ProvaAI.asm
 
 # Pack Options 
 PACK_ASSEMBLER_OPTIONS=-I "${DFP_DIR}/avrasm/inc"  -i m328Pdef.inc
@@ -91,7 +91,7 @@ FIXDEPS=fixDeps
 _/_=/
 ShExtension=.sh
 Device=ATmega328P
-ProjectDir=/home/faber222/Documents/faber/MIC-FILES/Aulas/mic29004.X
+ProjectDir=/home/aluno/faber/MIC-FILES/Aulas/mic29004.X
 ProjectName=mic29004
 ConfName=programming
 ImagePath=dist/programming/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
@@ -116,17 +116,17 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/PilhaeSubrotinasTarefa.obj: PilhaeSubrotinasTarefa.asm  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/ProvaAI.obj: ProvaAI.asm  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/PilhaeSubrotinasTarefa.obj 
-	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp PilhaeSubrotinasTarefa.asm
+	@${RM} ${OBJECTDIR}/ProvaAI.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp ProvaAI.asm
 else
-${OBJECTDIR}/PilhaeSubrotinasTarefa.obj: PilhaeSubrotinasTarefa.asm  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/ProvaAI.obj: ProvaAI.asm  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/PilhaeSubrotinasTarefa.obj 
-	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map PilhaeSubrotinasTarefa.asm
+	@${RM} ${OBJECTDIR}/ProvaAI.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map ProvaAI.asm
 endif
 
 # ------------------------------------------------------------------------------------
