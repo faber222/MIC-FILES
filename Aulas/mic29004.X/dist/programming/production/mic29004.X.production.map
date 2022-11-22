@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  ProvaAI.asm Thu Nov 17 11:31:26 2022
+AVRASM ver. 2.2.7  Aula22_11.asm Tue Nov 22 11:22:26 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,12 +695,14 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-DSEG A1           00000100
+EQU  BOTAO        00000002
+EQU  L0           00000000
+EQU  L1           00000001
 DEF  AUX          r16
-EQU  BOTAOAJUSTE  00000002
-CSEG setup        00000000
-CSEG start        00000006
-CSEG startA23     00000009
-CSEG loopResetado 0000000d
-CSEG pressAjuste  00000010
-CSEG loopBotao    00000016
+CSEG setup        00000034
+CSEG isr_int0     00000045
+CSEG main         0000003e
+CSEG delay        00000051
+CSEG desliga      0000004c
+CSEG fim          0000004d
+CSEG loop         00000057

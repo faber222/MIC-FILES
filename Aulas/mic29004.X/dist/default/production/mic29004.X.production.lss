@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  ProvaAI.asm Thu Nov 17 11:31:10 2022
+AVRASM ver. 2.2.7  Aula22_11.asm Tue Nov 22 11:22:24 2022
 
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
-ProvaAI.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
+Aula22_11.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
-ProvaAI.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
+Aula22_11.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
                                  
                                  .INCLUDE <m328Pdef.inc>
                                  
@@ -1031,57 +1031,86 @@ ProvaAI.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATme
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 .DSEG
-                                 .ORG SRAM_START
-000100                               A1: .BYTE 6 ; declara vetor com 6 posições
-                                 .CSEG
+                                 ;DEFINI¸C~OES
+                                 .equ BOTAO = PD2
+                                 .equ L0 = PB0
+                                 .equ L1 = PB1
+                                 .def AUX = R16
                                  
-                                 .def AUX = R16  ; apelido para r16
-                                 .equ BOTAOAJUSTE = PD2 ; apelido para o botão
-                                  
+                                 .ORG 0x0000 ; Reset vector
+000000 c033                          RJMP setup
+                                 
+                                 .ORG 0x0002 ; Vetor (endere¸co na Flash) da INT0
+000002 c042                          RJMP isr_int0
+                                 
+                                 .ORG 0x0034 ; primeira end. livre depois dos vetores
                                  setup:
-000000 ef0f                      ldi AUX,0b11111111 
-000001 b904                      OUT DDRB,AUX	; seleciona como saida os leds == 1
-000002 e000                      ldi AUX,0b00000000 
-000003 b905                      OUT PORTB,AUX	; deixa todos os leds acesos por padrão == 0
-                                     
-000004 9852                      cbi DDRD,BOTAOAJUSTE	; seleciona como entrada == 0
-000005 9a5a                      sbi PORTD,BOTAOAJUSTE	; seleciona como pull-up em 1 == não pressionado
+000034 e003                          ldi AUX,0x03 ; 0b00000011
+000035 b904                          out DDRB,AUX ; configura PB3/2 como sa´?da
+000036 b905                          out PORTB,AUX ; desliga os LEDs
+000037 9852                          cbi DDRD, BOTAO ; configura o PD2 como entrada
+000038 9a5a                          sbi PORTD, BOTAO ; liga o pull-up do PD2
                                  
-                                 start:
-                                     ;Inicializa os vetores A1
-000006 e0d1                          LDI YH,HIGH(A1)
-000007 e0c0                          LDI YL,LOW(A1)
-000008 e011                          LDI R17,1 ; carrega r17 com 1 para fazer o incremento
+000039 e001                          LDI AUX, 0x01 ;
+00003a 9300 0069                     STS EICRA, AUX ; config. INT0 sens´?vel a borda
+00003c 9ae8                          SBI EIMSK, INT0 ; habilita a INT0
                                  
-                                 startA23: ;INDIRETO COM POS INCREMENTO
-000009 9319                          st Y+,r17 ; adiciona no vetor o valor de r17 e incrementa ponteiro
-00000a 0f11                          add r17,r17 ; soma o valor de r17 com ele mesmo, fazendo 1+1=2/ 2+2 = 4 e etc.
-00000b 3410                          cpi r17,64 ; verifica se o valor de r17 não é igual a 64
-00000c f3e0                          brlo startA23 ; salta para startA23 se o valor de r17 ainda for menor que 64
+00003d 9478                          SEI ; habilita a interrup¸c~ao global ...
+                                 ; ... (bit I do SREG)
+                                     
+                                 main:
+00003e 9a28                          sbi PORTB,L0 ; desliga L0
+00003f e130                          ldi r19, 16
+000040 d010                          rcall delay ; delay 1s
+000041 9828                          cbi PORTB,L0 ; liga L0
+000042 e130                          ldi r19, 16
+000043 d00d                          rcall delay ; delay 1s
+000044 cff9                          rjmp main
                                  
-                                 loopResetado:
-                                     ;Inicializa os vetores A1
-00000d e0d1                          LDI YH,HIGH(A1)
-00000e e0c0                          LDI YL,LOW(A1)
-00000f e021                          LDI r18,1 ; carrega r18 com 1 para fazer o incremento
-                                 ;--------------------------------------;
-                                 pressAjuste: 
-000010 994a                          sbic PIND,BOTAOAJUSTE   ; if(BOTAOAJUSTE != 0)
-000011 cffe                          rjmp pressAjuste	    ; {rjmp pressAjuste}
+                                 ;-------------------------------------------------
+                                 ; Rotina de Interrup¸c~ao (ISR) da INT0
+                                 ;-------------------------------------------------
+                                 isr_int0:
+000045 930f                          push R16 ; Salva o contexto (SREG)
+000046 b70f                          in R16, SREG
+000047 930f                          push R16
+                                 
+000048 994a                          sbic PIND,BOTAO ; botao press. salta a pr´oxima inst.
+000049 c002                          rjmp desliga
+00004a 9829                          cbi PORTB,L1 ; liga L1
+00004b c001                          rjmp fim
+                                 desliga:
+00004c 9a29                          sbi PORTB,L1 ; desliga L1
+                                 
+                                 fim:
+00004d 910f                          pop R16 ; Restaura o contexto (SREG)
+00004e bf0f                          out SREG,R16
+00004f 910f                          pop R16
+000050 9518                          reti ; retorna da interrupcao
                                      
-000012 9119                          ld r17,Y+	    ; carrega o valor do ponteiro do vetor dentro de r17
-000013 b915                          out PORTB,r17   ; joga na saida dos leds o valor de r17 
-                                     
-000014 9523                          inc r18		    ; incrementa o iterador r18
-000015 3027                          cpi r18,7		    ; compara se é igual a 7
-                                 loopBotao:
-000016 994a                          sbic PIND,BOTAOAJUSTE
-000017 cffe                          rjmp loopBotao
-                                     
-000018 f3a1                          breq loopResetado	    ; salta se for igual a 7 para o loopResetado
-000019 cff6                          rjmp pressAjuste	    ; se não, salta para a rotina pressAjuste
-                                     
+                                 
+                                 delay:
+000051 931f                          push r17 ; Salva os valores de r17,
+000052 932f                          push r18 ; ... r18,
+000053 b71f                          in r17,SREG ; ...
+000054 931f                          push r17 ; ... e SREG na pilha.
+                                 
+                                 ; Executa sub-rotina :
+000055 2711                          clr r17
+000056 2722                          clr r18
+                                 loop:
+000057 951a                          dec R17 ;decrementa R17, come¸ca com 0x00
+000058 f7f1                          brne loop ;enquanto R17 > 0 fica decrementando R17
+000059 952a                          dec R18 ;decrementa R18, come¸ca com 0x00
+00005a f7e1                          brne loop ;enquanto R18 > 0 volta decrementar R18
+00005b 953a                          dec R19 ;decrementa R19
+00005c f7d1                          brne loop ;enquanto R19 > 0 vai para volta
+                                 
+00005d 911f                          pop r17
+00005e bf1f                          out SREG, r17 ; Restaura os valores de SREG,
+00005f 912f                          pop r18 ; ... r18
+000060 911f                          pop r17 ; ... r17 da pilha
+                                 
 
 
 RESOURCE USE INFORMATION
@@ -1099,40 +1128,40 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega328P" register use summary:
-x  :   0 y  :   2 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   4 r17:   7 r18:   3 r19:   0 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   2 
-r29:   2 r30:   0 r31:   0 
-Registers used: 6 out of 35 (17.1%)
+r13:   0 r14:   0 r15:   0 r16:  11 r17:   8 r18:   4 r19:   3 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r29:   0 r30:   0 r31:   0 
+Registers used: 4 out of 35 (11.4%)
 
 "ATmega328P" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   1 adiw  :   0 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   1 brlt  :   0 brmi  :   0 
-brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   1 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
+brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   3 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   2 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   2 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   1 jmp   :   0 
-ld    :   1 ldd   :   0 ldi   :   8 lds   :   0 lpm   :   0 lsl   :   0 
+cpi   :   0 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   0 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :   4 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   3 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   3 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   1 sbic  :   2 sbis  :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   4 pop   :   5 
+push  :   5 rcall :   2 ret   :   1 reti  :   1 rjmp  :   5 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   4 sbic  :   1 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
-sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   1 std   :   0 sts   :   0 
+sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   1 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 13 out of 113 (11.5%)
+Instructions used: 17 out of 113 (15.0%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000034     52      0     52   32768   0.2%
-[.dseg] 0x000100 0x000106      0      6      6    2048   0.3%
+[.cseg] 0x000000 0x0000c4     96      0     96   32768   0.3%
+[.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
 Assembly complete, 0 errors, 0 warnings
