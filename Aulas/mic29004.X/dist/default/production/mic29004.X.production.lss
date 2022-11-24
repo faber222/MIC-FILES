@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  Aula22_11.asm Tue Nov 22 11:22:24 2022
+AVRASM ver. 2.2.7  AA_interrupcao.asm Thu Nov 24 11:19:45 2022
 
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
-Aula22_11.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
+AA_interrupcao.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
-Aula22_11.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
+AA_interrupcao.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
                                  
                                  .INCLUDE <m328Pdef.inc>
                                  
@@ -1031,8 +1031,9 @@ Aula22_11.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/AT
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 ;DEFINI¸C~OES
-                                 .equ BOTAO = PD2
+                                 ;DEFINICOES
+                                 .equ BOTAO = PD3
+                                 .equ BOTAO2 = PD2
                                  .equ L0 = PB0
                                  .equ L1 = PB1
                                  .def AUX = R16
@@ -1040,76 +1041,87 @@ Aula22_11.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/AT
                                  .ORG 0x0000 ; Reset vector
 000000 c033                          RJMP setup
                                  
-                                 .ORG 0x0002 ; Vetor (endere¸co na Flash) da INT0
-000002 c042                          RJMP isr_int0
+                                 .ORG 0x0002 ; Vetor (endereco na Flash) da INT1
+000002 c048                          RJMP isr_int0
                                  
+                                 .ORG 0x0004 ; Vetor (endereco na Flash) da INT1
+000004 c04e                          RJMP isr_int1    
+                                     
                                  .ORG 0x0034 ; primeira end. livre depois dos vetores
                                  setup:
 000034 e003                          ldi AUX,0x03 ; 0b00000011
-000035 b904                          out DDRB,AUX ; configura PB3/2 como sa´?da
+000035 b904                          out DDRB,AUX ; configura PB3/2 como saida
 000036 b905                          out PORTB,AUX ; desliga os LEDs
-000037 9852                          cbi DDRD, BOTAO ; configura o PD2 como entrada
-000038 9a5a                          sbi PORTD, BOTAO ; liga o pull-up do PD2
+000037 9853                          cbi DDRD, BOTAO ; configura o PD3 como entrada
+000038 9a5b                          sbi PORTD, BOTAO ; liga o pull-up do PD
+000039 9852                          cbi DDRD, BOTAO2 ; configura o PD2 como entrada
+00003a 9a5a                          sbi PORTD, BOTAO2 ; liga o pull-up do PD2
                                  
-000039 e001                          LDI AUX, 0x01 ;
-00003a 9300 0069                     STS EICRA, AUX ; config. INT0 sens´?vel a borda
-00003c 9ae8                          SBI EIMSK, INT0 ; habilita a INT0
+00003b e002                          LDI AUX, 0b00000010 ;
+00003c 9300 0069                     STS EICRA, AUX ; config. INT0 sensivel a borda
+00003e 9ae8                          SBI EIMSK, INT0 ; habilita a INT0
+                                     
+00003f e008                          LDI AUX, 0b00001000 ;
+000040 9300 0069                     STS EICRA, AUX ; config. INT1 sensivel a borda
+000042 9ae9                          SBI EIMSK, INT1 ; habilita a INT1
                                  
-00003d 9478                          SEI ; habilita a interrup¸c~ao global ...
+000043 9478                          SEI ; habilita a interrupcao global ...
                                  ; ... (bit I do SREG)
                                      
                                  main:
-00003e 9a28                          sbi PORTB,L0 ; desliga L0
-00003f e130                          ldi r19, 16
-000040 d010                          rcall delay ; delay 1s
-000041 9828                          cbi PORTB,L0 ; liga L0
-000042 e130                          ldi r19, 16
-000043 d00d                          rcall delay ; delay 1s
-000044 cff9                          rjmp main
+000044 9a28                          sbi PORTB,L0 ; desliga L0
+000045 ea30                          ldi r19, 160
+000046 d014                          rcall delay ; delay 1s
+000047 9828                          cbi PORTB,L0 ; liga L0
+000048 ea30                          ldi r19, 160
+000049 d011                          rcall delay ; delay 1s
+00004a cff9                          rjmp main
                                  
                                  ;-------------------------------------------------
-                                 ; Rotina de Interrup¸c~ao (ISR) da INT0
+                                 ; Rotina de Interrupcao (ISR) da INT0
                                  ;-------------------------------------------------
                                  isr_int0:
-000045 930f                          push R16 ; Salva o contexto (SREG)
-000046 b70f                          in R16, SREG
-000047 930f                          push R16
+00004b 930f                          push R16 ; Salva o contexto (SREG)
+00004c b70f                          in R16, SREG
+00004d 930f                          push R16
+00004e 9a29                          sbi PORTB,L1 ; desliga L1
+00004f 910f                          pop R16 ; Restaura o contexto (SREG)
+000050 bf0f                          out SREG,R16
+000051 910f                          pop R16
+000052 9518                          reti ; retorna da interrupcao
                                  
-000048 994a                          sbic PIND,BOTAO ; botao press. salta a pr´oxima inst.
-000049 c002                          rjmp desliga
-00004a 9829                          cbi PORTB,L1 ; liga L1
-00004b c001                          rjmp fim
-                                 desliga:
-00004c 9a29                          sbi PORTB,L1 ; desliga L1
                                  
-                                 fim:
-00004d 910f                          pop R16 ; Restaura o contexto (SREG)
-00004e bf0f                          out SREG,R16
-00004f 910f                          pop R16
-000050 9518                          reti ; retorna da interrupcao
-                                     
+                                 isr_int1:
+000053 930f                          push R16 ; Salva o contexto (SREG)
+000054 b70f                          in R16, SREG
+000055 930f                          push R16
+000056 9829                          cbi PORTB,L1 ; liga L1
+000057 910f                          pop R16 ; Restaura o contexto (SREG)
+000058 bf0f                          out SREG,R16
+000059 910f                          pop R16
+00005a 9518                          reti ; retorna da interrupcao
                                  
                                  delay:
-000051 931f                          push r17 ; Salva os valores de r17,
-000052 932f                          push r18 ; ... r18,
-000053 b71f                          in r17,SREG ; ...
-000054 931f                          push r17 ; ... e SREG na pilha.
+00005b 931f                          push r17 ; Salva os valores de r17,
+00005c 932f                          push r18 ; ... r18,
+00005d b71f                          in r17,SREG ; ...
+00005e 931f                          push r17 ; ... e SREG na pilha.
                                  
                                  ; Executa sub-rotina :
-000055 2711                          clr r17
-000056 2722                          clr r18
+00005f 2711                          clr r17
+000060 2722                          clr r18
                                  loop:
-000057 951a                          dec R17 ;decrementa R17, come¸ca com 0x00
-000058 f7f1                          brne loop ;enquanto R17 > 0 fica decrementando R17
-000059 952a                          dec R18 ;decrementa R18, come¸ca com 0x00
-00005a f7e1                          brne loop ;enquanto R18 > 0 volta decrementar R18
-00005b 953a                          dec R19 ;decrementa R19
-00005c f7d1                          brne loop ;enquanto R19 > 0 vai para volta
+000061 951a                          dec R17 ;decrementa R17, come¸ca com 0x00
+000062 f7f1                          brne loop ;enquanto R17 > 0 fica decrementando R17
+000063 952a                          dec R18 ;decrementa R18, come¸ca com 0x00
+000064 f7e1                          brne loop ;enquanto R18 > 0 volta decrementar R18
+000065 953a                          dec R19 ;decrementa R19
+000066 f7d1                          brne loop ;enquanto R19 > 0 vai para volta
                                  
-00005d 911f                          pop r17
-00005e bf1f                          out SREG, r17 ; Restaura os valores de SREG,
-00005f 912f                          pop r18 ; ... r18
-000060 911f                          pop r17 ; ... r17 da pilha
+000067 911f                          pop r17
+000068 bf1f                          out SREG, r17 ; Restaura os valores de SREG,
+000069 912f                          pop r18 ; ... r18
+00006a 911f                          pop r17 ; ... r17 da pilha
                                  
 
 
@@ -1130,7 +1142,7 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  11 r17:   8 r18:   4 r19:   3 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:  19 r17:   8 r18:   4 r19:   3 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
 Registers used: 4 out of 35 (11.4%)
@@ -1141,26 +1153,26 @@ andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   3 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   4 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   2 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   0 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   4 lds   :   0 lpm   :   0 lsl   :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   0 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :   5 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   4 pop   :   5 
-push  :   5 rcall :   2 ret   :   1 reti  :   1 rjmp  :   5 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   4 sbic  :   1 sbis  :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   5 pop   :   7 
+push  :   7 rcall :   2 ret   :   1 reti  :   2 rjmp  :   4 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   6 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   1 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   2 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 17 out of 113 (15.0%)
+Instructions used: 16 out of 113 (14.2%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000c4     96      0     96   32768   0.3%
+[.cseg] 0x000000 0x0000d8    118      0    118   32768   0.4%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

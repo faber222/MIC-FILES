@@ -6,7 +6,7 @@
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>ProvaAI.asm</SOURCE_FILE>
+ <SOURCE_FILE>Aula22_11.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -14,18 +14,18 @@
   <FILE>dist/programming/debug/mic29004.X.debug.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
-  <FILE>ProvaAI.hex</FILE>
+  <FILE>Aula22_11.hex</FILE>
  </HEX_FILES>
  <OUTPUT_FILES>
   <FILE>dist/programming/debug/mic29004.X.debug.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <A1><FILE>ProvaAI.asm</FILE><LINE>5</LINE></A1>
-  <setup><FILE>ProvaAI.asm</FILE><LINE>11</LINE></setup>
-  <start><FILE>ProvaAI.asm</FILE><LINE>21</LINE></start>
-  <startA23><FILE>ProvaAI.asm</FILE><LINE>27</LINE></startA23>
-  <loopResetado><FILE>ProvaAI.asm</FILE><LINE>33</LINE></loopResetado>
-  <pressAjuste><FILE>ProvaAI.asm</FILE><LINE>39</LINE></pressAjuste>
-  <led><FILE>ProvaAI.asm</FILE><LINE>53</LINE></led>
+  <setup><FILE>Aula22_11.asm</FILE><LINE>16</LINE></setup>
+  <isr_int0><FILE>Aula22_11.asm</FILE><LINE>42</LINE></isr_int0>
+  <main><FILE>Aula22_11.asm</FILE><LINE>30</LINE></main>
+  <delay><FILE>Aula22_11.asm</FILE><LINE>61</LINE></delay>
+  <desliga><FILE>Aula22_11.asm</FILE><LINE>51</LINE></desliga>
+  <fim><FILE>Aula22_11.asm</FILE><LINE>54</LINE></fim>
+  <loop><FILE>Aula22_11.asm</FILE><LINE>70</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>
