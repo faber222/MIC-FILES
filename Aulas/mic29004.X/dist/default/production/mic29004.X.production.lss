@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  AA_interrupcao.asm Thu Nov 24 11:19:45 2022
+AVRASM ver. 2.2.7  AA_interrupcao.asm Tue Nov 29 11:26:29 2022
 
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
 AA_interrupcao.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
@@ -1042,10 +1042,10 @@ AA_interrupcao.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microch
 000000 c033                          RJMP setup
                                  
                                  .ORG 0x0002 ; Vetor (endereco na Flash) da INT1
-000002 c048                          RJMP isr_int0
+000002 c050                          RJMP isr_int0
                                  
                                  .ORG 0x0004 ; Vetor (endereco na Flash) da INT1
-000004 c04e                          RJMP isr_int1    
+000004 c046                          RJMP isr_int1    
                                      
                                  .ORG 0x0034 ; primeira end. livre depois dos vetores
                                  setup:
@@ -1080,7 +1080,7 @@ AA_interrupcao.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microch
                                  ;-------------------------------------------------
                                  ; Rotina de Interrupcao (ISR) da INT0
                                  ;-------------------------------------------------
-                                 isr_int0:
+                                 isr_int1:
 00004b 930f                          push R16 ; Salva o contexto (SREG)
 00004c b70f                          in R16, SREG
 00004d 930f                          push R16
@@ -1091,7 +1091,7 @@ AA_interrupcao.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microch
 000052 9518                          reti ; retorna da interrupcao
                                  
                                  
-                                 isr_int1:
+                                 isr_int0:
 000053 930f                          push R16 ; Salva o contexto (SREG)
 000054 b70f                          in R16, SREG
 000055 930f                          push R16

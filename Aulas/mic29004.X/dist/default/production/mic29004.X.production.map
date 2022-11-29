@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  AA_interrupcao.asm Thu Nov 24 11:19:45 2022
+AVRASM ver. 2.2.7  AA_interrupcao.asm Tue Nov 29 11:26:29 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -701,8 +701,8 @@ EQU  L0           00000000
 EQU  L1           00000001
 DEF  AUX          r16
 CSEG setup        00000034
-CSEG isr_int0     0000004b
-CSEG isr_int1     00000053
+CSEG isr_int0     00000053
+CSEG isr_int1     0000004b
 CSEG main         00000044
 CSEG delay        0000005b
 CSEG loop         00000061

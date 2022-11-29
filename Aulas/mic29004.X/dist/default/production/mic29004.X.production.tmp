@@ -22,8 +22,8 @@
  </OUTPUT_FILES>
  <LABELS>
   <setup><FILE>AA_interrupcao.asm</FILE><LINE>20</LINE></setup>
-  <isr_int0><FILE>AA_interrupcao.asm</FILE><LINE>52</LINE></isr_int0>
-  <isr_int1><FILE>AA_interrupcao.asm</FILE><LINE>63</LINE></isr_int1>
+  <isr_int0><FILE>AA_interrupcao.asm</FILE><LINE>63</LINE></isr_int0>
+  <isr_int1><FILE>AA_interrupcao.asm</FILE><LINE>52</LINE></isr_int1>
   <main><FILE>AA_interrupcao.asm</FILE><LINE>40</LINE></main>
   <delay><FILE>AA_interrupcao.asm</FILE><LINE>73</LINE></delay>
   <loop><FILE>AA_interrupcao.asm</FILE><LINE>82</LINE></loop>
