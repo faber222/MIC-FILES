@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=AA_interrupcao.asm
+SOURCEFILES_QUOTED_IF_SPACED=AA_TEMPORIZADOR.asm
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/AA_interrupcao.obj
-POSSIBLE_DEPFILES=${OBJECTDIR}/AA_interrupcao.obj.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/AA_TEMPORIZADOR.obj
+POSSIBLE_DEPFILES=${OBJECTDIR}/AA_TEMPORIZADOR.obj.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/AA_interrupcao.obj
+OBJECTFILES=${OBJECTDIR}/AA_TEMPORIZADOR.obj
 
 # Source Files
-SOURCEFILES=AA_interrupcao.asm
+SOURCEFILES=AA_TEMPORIZADOR.asm
 
 # Pack Options 
 PACK_ASSEMBLER_OPTIONS=-I "${DFP_DIR}/avrasm/inc"  -i m328Pdef.inc
@@ -96,17 +96,17 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/AA_interrupcao.obj: AA_interrupcao.asm  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/AA_TEMPORIZADOR.obj: AA_TEMPORIZADOR.asm  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/AA_interrupcao.obj 
-	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp AA_interrupcao.asm
+	@${RM} ${OBJECTDIR}/AA_TEMPORIZADOR.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp AA_TEMPORIZADOR.asm
 else
-${OBJECTDIR}/AA_interrupcao.obj: AA_interrupcao.asm  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/AA_TEMPORIZADOR.obj: AA_TEMPORIZADOR.asm  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/AA_interrupcao.obj 
-	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -l dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.lss AA_interrupcao.asm
+	@${RM} ${OBJECTDIR}/AA_TEMPORIZADOR.obj 
+	${MP_AS}  -fI -W+ie ${PACK_ASSEMBLER_OPTIONS} -d dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  -S dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.tmp  -o dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.hex  -m dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.map  -l dist/${CND_CONF}/${IMAGE_TYPE}/mic29004.X.${IMAGE_TYPE}.lss AA_TEMPORIZADOR.asm
 endif
 
 # ------------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  AA_interrupcao.asm Tue Nov 29 11:18:45 2022
+AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:51:29 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -700,9 +700,12 @@ EQU  BOTAO2       00000002
 EQU  L0           00000000
 EQU  L1           00000001
 DEF  AUX          r16
+DSEG count        00000100
 CSEG setup        00000034
 CSEG isr_int0     00000053
 CSEG isr_int1     0000004b
-CSEG main         00000044
-CSEG delay        0000005b
-CSEG loop         00000061
+CSEG isr_tc0b     0000005b
+CSEG main         00000049
+CSEG teste        0000006b
+CSEG fim          00000065
+CSEG cont         0000006f

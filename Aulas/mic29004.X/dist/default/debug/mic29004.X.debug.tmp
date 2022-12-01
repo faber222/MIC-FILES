@@ -1,12 +1,12 @@
 <ASSEMBLER_INFO>
  <VERSION>2.2.7</VERSION>
  <DEVICE>"ATmega328P"</DEVICE>
- <WORKING_DIR>/home/aluno/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
+ <WORKING_DIR>/home/faber222/Documents/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>Aula29_11.asm</SOURCE_FILE>
+ <SOURCE_FILE>AA_TEMPORIZADOR.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -14,15 +14,18 @@
   <FILE>dist/default/debug/mic29004.X.debug.obj</FILE>
  </OBJECT_FILES>
  <HEX_FILES>
-  <FILE>Aula29_11.hex</FILE>
+  <FILE>AA_TEMPORIZADOR.hex</FILE>
  </HEX_FILES>
  <OUTPUT_FILES>
   <FILE>dist/default/debug/mic29004.X.debug.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <setup><FILE>Aula29_11.asm</FILE><LINE>5</LINE></setup>
-  <isr_tc0b><FILE>Aula29_11.asm</FILE><LINE>18</LINE></isr_tc0b>
-  <main><FILE>Aula29_11.asm</FILE><LINE>15</LINE></main>
-  <fim><FILE>Aula29_11.asm</FILE><LINE>25</LINE></fim>
+  <count><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>17</LINE></count>
+  <setup><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>34</LINE></setup>
+  <isr_int0><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>79</LINE></isr_int0>
+  <isr_int1><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>68</LINE></isr_int1>
+  <isr_tc0b><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>89</LINE></isr_tc0b>
+  <main><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>62</LINE></main>
+  <fim><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>108</LINE></fim>
  </LABELS>
 </ASSEMBLER_INFO>

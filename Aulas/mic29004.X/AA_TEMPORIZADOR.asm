@@ -10,7 +10,13 @@
 .equ BOTAO2 = PD2
 .equ L0 = PB0
 .equ L1 = PB1
-.def COUNT = R16
+.def AUX = R16
+
+.DSEG
+.ORG SRAM_START
+    count: .BYTE 1
+
+.CSEG    
 
 .ORG 0x0000 ; Reset vector
     RJMP setup
@@ -26,63 +32,92 @@
     
 .ORG 0x0034 ; primeira end. livre depois dos vetores
 setup:
-    ldi COUNT,0x03 ; 0b00000011
-    out DDRB,COUNT ; configura PB3/2 como saida
-    out PORTB,COUNT ; desliga os LEDs
+    ldi AUX,0x03 ; 0b00000011
+    out DDRB,AUX ; configura PB3/2 como saida
+    out PORTB,AUX ; desliga os LEDs
     cbi DDRD, BOTAO ; configura o PD3 como entrada
     sbi PORTD, BOTAO ; liga o pull-up do PD
     cbi DDRD, BOTAO2 ; configura o PD2 como entrada
     sbi PORTD, BOTAO2 ; liga o pull-up do PD2
 
-    LDI COUNT, 0b00000010 ;
-    STS EICRA, COUNT ; config. INT0 sensivel a borda
+    LDI AUX, 0b00000010 ;
+    STS EICRA, AUX ; config. INT0 sensivel a borda
     SBI EIMSK, INT0 ; habilita a INT0
     
-    LDI COUNT, 0b00001000 ;
-    STS EICRA, COUNT ; config. INT1 sensivel a borda
+    LDI AUX, 0b00001000 ;
+    STS EICRA, AUX ; config. INT1 sensivel a borda
     SBI EIMSK, INT1 ; habilita a INT1
     
-    LDI COUNT, 0b00000101   ;TC0 com prescaler de 1024, a 16 MHz gera
-    OUT TCCR0B, COUNT	    ; uma interrupcaoo a cada 16,384 ms
-    LDI COUNT, 1
-    STS TIMSK0, COUNT	    ; habilita int. do TC0B (TIMSK0(0) =TOIE0 <- 1)
+    LDI AUX, 0b00000101   ;TC0 com prescaler de 1024, a 16 MHz gera
+    OUT TCCR0B, AUX	    ; uma interrupcaoo a cada 16,384 ms
+    LDI AUX, 1
+    STS TIMSK0, AUX	    ; habilita int. do TC0B (TIMSK0(0) =TOIE0 <- 1)
 
     SEI ; habilita a interrupcao global ...
 ; ... (bit I do SREG)
     
 main:
+    rcall teste
     rjmp main
 
 ;-------------------------------------------------
 ; Rotina de Interrupcao (ISR) da INT0
 ;-------------------------------------------------
 isr_int1:
-    push COUNT ; Salva o contexto (SREG)
-    in COUNT, SREG
-    push COUNT
+    push AUX ; Salva o contexto (SREG)
+    in AUX, SREG
+    push AUX
     sbi PORTB,L1 ; desliga L1
-    pop COUNT ; Restaura o contexto (SREG)
-    out SREG,COUNT
-    pop COUNT
+    pop AUX ; Restaura o contexto (SREG)
+    out SREG,AUX
+    pop AUX
     reti ; retorna da interrupcao
 
 
 isr_int0:
-    push COUNT ; Salva o contexto (SREG)
-    in COUNT, SREG
-    push COUNT
+    push AUX ; Salva o contexto (SREG)
+    in AUX, SREG
+    push AUX
     cbi PORTB,L1 ; liga L1
-    pop COUNT ; Restaura o contexto (SREG)
-    out SREG,COUNT
-    pop COUNT
+    pop AUX ; Restaura o contexto (SREG)
+    out SREG,AUX
+    pop AUX
     reti ; retorna da interrupcao
 
 isr_tc0b:
-    inc COUNT	    ; incrementa o contador
-    cpi COUNT, 62   ; verifica se é 62
+    push AUX ; Salva o contexto (SREG)
+    in AUX, SREG
+    push AUX
+    
+    lds AUX, count
+    inc AUX	    ; incrementa o contador
+    cpi AUX, 62   ; verifica se é 62
     brne fim	    ; se não for igual, salta para o fim
+    
     sbi PINB, L0    ; inverte o estado do LED depois de entrar 62 vezes
 		    ; na interrupcao: 62 * 16,384 ms = 1.015,81ms
-    ldi COUNT,0
+    ldi AUX,0
+
 fim:
+    sts  count, AUX
+    pop AUX ; Restaura o contexto (SREG)
+    out SREG,AUX
+    pop AUX
     reti
+    
+teste:
+  CLR ZH
+  CLR ZL
+  LDI R29, 29
+  CLR R28
+cont:
+  ST Z+,R28
+  DEC R29
+  CPI R29, 0
+  BRNE cont
+  
+  CLR ZH
+  CLR ZL
+  OUT SREG, R28
+  
+  ret

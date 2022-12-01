@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  Aula29_11.asm Tue Nov 29 10:52:45 2022
+AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:09:56 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,7 +695,15 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-CSEG setup        00000021
-CSEG isr_tc0b     0000002a
-CSEG main         00000029
-CSEG fim          0000002f
+EQU  BOTAO        00000003
+EQU  BOTAO2       00000002
+EQU  L0           00000000
+EQU  L1           00000001
+DEF  AUX          r16
+DSEG count        00000100
+CSEG setup        00000034
+CSEG isr_int0     00000054
+CSEG isr_int1     0000004c
+CSEG isr_tc0b     0000005c
+CSEG main         0000004b
+CSEG fim          0000006a
