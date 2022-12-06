@@ -1,12 +1,12 @@
 <ASSEMBLER_INFO>
  <VERSION>2.2.7</VERSION>
  <DEVICE>"ATmega328P"</DEVICE>
- <WORKING_DIR>/home/faber222/Documents/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
+ <WORKING_DIR>/home/aluno/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>AA_TEMPORIZADOR.asm</SOURCE_FILE>
+ <SOURCE_FILE>AI2_PILHA.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -20,14 +20,21 @@
   <FILE>dist/programming/production/mic29004.X.production.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <count><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>17</LINE></count>
-  <setup><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>34</LINE></setup>
-  <isr_int0><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>77</LINE></isr_int0>
-  <isr_int1><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>66</LINE></isr_int1>
-  <isr_tc0b><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>87</LINE></isr_tc0b>
-  <main><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>59</LINE></main>
-  <teste><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>108</LINE></teste>
-  <fim><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>101</LINE></fim>
-  <cont><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>113</LINE></cont>
+  <A1><FILE>AI2_PILHA.asm</FILE><LINE>5</LINE></A1>
+  <count><FILE>AI2_PILHA.asm</FILE><LINE>6</LINE></count>
+  <setup><FILE>AI2_PILHA.asm</FILE><LINE>12</LINE></setup>
+  <startA1><FILE>AI2_PILHA.asm</FILE><LINE>47</LINE></startA1>
+  <ssd_init><FILE>AI2_PILHA.asm</FILE><LINE>65</LINE></ssd_init>
+  <loopLED1><FILE>AI2_PILHA.asm</FILE><LINE>22</LINE></loopLED1>
+  <delay><FILE>AI2_PILHA.asm</FILE><LINE>142</LINE></delay>
+  <ssd_write_x><FILE>AI2_PILHA.asm</FILE><LINE>74</LINE></ssd_write_x>
+  <loopResetado><FILE>AI2_PILHA.asm</FILE><LINE>59</LINE></loopResetado>
+  <loop10><FILE>AI2_PILHA.asm</FILE><LINE>50</LINE></loop10>
+  <ssd_decode><FILE>AI2_PILHA.asm</FILE><LINE>96</LINE></ssd_decode>
+  <ssd_dp_on><FILE>AI2_PILHA.asm</FILE><LINE>80</LINE></ssd_dp_on>
+  <ssd_dp_off><FILE>AI2_PILHA.asm</FILE><LINE>85</LINE></ssd_dp_off>
+  <Tabela><FILE>AI2_PILHA.asm</FILE><LINE>130</LINE></Tabela>
+  <le_tab><FILE>AI2_PILHA.asm</FILE><LINE>109</LINE></le_tab>
+  <loop><FILE>AI2_PILHA.asm</FILE><LINE>151</LINE></loop>
  </LABELS>
 </ASSEMBLER_INFO>
