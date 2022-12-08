@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  AI2_PILHA.asm Tue Dec  6 11:50:20 2022
+AVRASM ver. 2.2.7  AI2_INTERRUPCAO.asm Thu Dec  8 10:35:12 2022
 
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
-AI2_PILHA.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
+AI2_INTERRUPCAO.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
-AI2_PILHA.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
+AI2_INTERRUPCAO.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
                                  
                                  .INCLUDE <m328Pdef.inc>
                                  
@@ -1031,180 +1031,165 @@ AI2_PILHA.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/AT
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
+                                 ;DEFINICOES
+                                 .equ BOTAO = PD2
+                                 .def AUX = R16
+                                 
                                  .DSEG
                                  .ORG SRAM_START
-000100                               A1: .BYTE 10 ; declara vetor com 10 posições
-00010a                               count: .BYTE 1
-                                 .CSEG
+000100                               count: .BYTE 1
                                  
-                                 .def AUX = R16  ; apelido para r16
-                                 .equ DP = PC5 ; apelido para o botão
-                                  
-                                 setup:
-                                      ;Inicializa o vetor A1
-000000 e0b1                          LDI XH,HIGH(A1)
-000001 e0a0                          LDI XL,LOW(A1)
-000002 d01b                          rcall startA1
-000003 d026                          rcall ssd_init
-000004 e000                          ldi r16,0
-000005 9300 010a                     sts count, r16
-000007 2700                          clr r16
+                                 .CSEG    
                                  
-                                 loopLED1: 
-000008 9100 010a                     lds r16, count
-00000a 9503                          inc r16
-00000b 9300 010a                     sts count, r16
-                                     
-00000d 930f                          push r16
-00000e b70f                          in r16,SREG
-00000f 930f                          push r16
-                                     
-000010 d01f                          rcall ssd_write_x
-000011 9611                          adiw X,1
-                                     
-000012 910f                          pop r16 
-000013 bf0f                          out SREG,r16
-000014 910f                          pop r16
-                                     
-000015 e130                          ldi r19,16
-000016 d03d                          rcall delay	
-                                     
-000017 300b                          cpi r16,11	; verifica se o valor de r17 não é igual a 0
-000018 f378                          brlo loopLED1
-                                     
-000019 d00d                          rcall loopResetado
-00001a e000                          ldi r16,0
-00001b 9300 010a                     sts count,r16
-00001d cfea                          rjmp loopLED1
-                                    
-                                     
-                                     
-                                 ;--------------------------------------;
-                                 startA1: 
-00001e 931f                          push r17
-00001f e019                          ldi r17, 9
-                                 loop10:
-000020 931d                          st X+,r17	; adiciona no vetor o valor de r17 e incrementa ponteiro
-000021 951a                          dec r17	; decrementa r17
-000022 3f1f                          cpi r17,-1	; verifica se o valor de r17 não é igual a 0
-000023 f7e4                          BRGE loop10 ; salta para startA1 se o valor de r17 ainda for maior que 0
-000024 d002                          rcall loopResetado
-000025 911f                          pop r17
-000026 9508                          ret
+                                 .ORG 0x0000 ; Reset vector
+000000 c033                          RJMP setup
                                  
-                                 loopResetado:
-                                     ;Inicializa os vetores A1
-000027 e0b1                          LDI XH,HIGH(A1)
-000028 e0a0                          LDI XL,LOW(A1)
-000029 9508                          ret
-                                 ;--------------------------------------;  
-                                 ssd_init:
-00002a ef0f                          LDI AUX,0b11111111 
-00002b b904                          OUT DDRB,AUX	; seleciona como saida os leds == 1
-00002c b907                          OUT DDRC,AUX	; seleciona como saida os leds == 1
-00002d b905                          OUT PORTB,AUX	; deixa todos os leds apagados por padrão == 1
-00002e b908                          OUT PORTC,AUX	; deixa todos os leds apagados por padrão == 1
-00002f 9508                          RET
+                                 .ORG 0x0002 ; Vetor (endereco na Flash) da INT0
+000002 c054                          RJMP isr_int0
                                  
-                                 ;--------------------------------------;
-                                 ssd_write_x:
-000030 910c                          ld r16, X
-000031 d005                          rcall ssd_decode
-000032 9508                          ret
                                  
-                                 ;--------------------------------------;
-                                 ssd_dp_on:
-000033 9845                          cbi PORTC,DP
-000034 9508                          ret
+                                 .ORG 0x0020
+000020 c028                          RJMP isr_tc0b
                                      
-                                 ;--------------------------------------;
-                                 ssd_dp_off:    
-000035 9a45                          sbi PORTC,DP
-000036 9508                          ret
-                                     
+                                 .ORG 0x0034 ; primeira end. livre depois dos vetores
                                  
+                                 setup:    
+                                     ; Configura a PD2 como entrada com o pull-up ativo
+000034 9852                          cbi DDRD, BOTAO
+000035 9a5a                          sbi PORTD, BOTAO
+                                 
+                                     ; Inicializa o SSD
+000036 9a3c                          sbi DDRC, PC4	    ; Configura PC5 (segmento G) como saída ...
+000037 9a44                          sbi PORTC, PC4	    ; ... e apaga 
+000038 9a3d                          sbi DDRC, PC5	    ; Configura PC6 (DP) como saída ...
+000039 9a45                          sbi PORTc, PC5	    ; ... e apaga 
+                                     
+00003a ef1f                          ldi R17,0xFF	  
+00003b b914                          out DDRB, R17	    ; configura PBx como saída ...
+00003c b915                          out PORTB, R17	    ; ... e apaga os segmentos do display
+                                     
+00003d e002                          LDI AUX, 0b00000010 ;
+00003e 9300 0069                     STS EICRA, AUX ; config. INT0 sensivel a borda
+000040 9ae8                          SBI EIMSK, INT0 ; habilita a INT0
+                                     
+000041 e005                          LDI AUX, 0b00000101   ;TC0 com prescaler de 1024, a 16 MHz gera
+000042 bd05                          OUT TCCR0B, AUX	    ; uma interrupcaoo a cada 16,384 ms
+000043 e001                          LDI AUX, 1
+000044 9300 006e                     STS TIMSK0, AUX	    ; habilita int. do TC0B (TIMSK0(0) =TOIE0 <- 1)
+                                     
+000046 2700                          clr AUX
+                                 ;    clr r17
+                                 
+000047 9478                          SEI ; habilita a interrupcao global ...
+                                 ; ... (bit I do SREG
+                                 
+                                 main: 
+000048 cfff                         rjmp main
+                                     
+                                 isr_tc0b:
+000049 d010                          rcall ssd_decode
+00004a 9503                          inc r16
+00004b 300a                          cpi r16, 10
+00004c f409                          brne tempo
+00004d 2700                          clr r16
+                                 tempo:
+00004e 9110 0100                     lds r17, count
+000050 9513                          inc r17	    ; incrementa o contador
+                                 ;    sts  count, r17
+000051 3810                          cpi r17, 128    ; verifica se é 128
+000052 f409                          brne fim	    ; se não for igual, salta para o fim
+000053 d006                          rcall ssd_decode
+                                 fim:
+000054 9300 0100                     sts  count, AUX
+000056 9518                          reti
+                                     
+                                     
+                                 isr_int0:
+000057 2700                          clr r16
+000058 d001                          rcall ssd_decode
+000059 9518                          reti ; retorna da interrupcao
+                                 	
                                  ;---------------------------------------------------------------------------
                                  ; SUB-ROTINA: Decodifica um valor de 0 a 15 passado como parâmetro no R16 e 
                                  ;             escreve em um display anodo comum com a seguinte ligação:
-                                 ; Seguimento:  DP G F  ...  A
-                                 ; Pino:       PC5 PC4 PB5 ... PB0
+                                 ; Seguimento:  G   F  ...  A
+                                 ; Pino:       PB2 PC5 ... PC0
                                  ;---------------------------------------------------------------------------
                                  ssd_decode:
-000037 93ff                        push ZH            ; Guarda contexto
-000038 93ef                        push ZL        
-000039 920f                        push r0        
-00003a b60f                        in r0,SREG   
-00003b 920f                        push r0      
+00005a 93ff                        push ZH            ; Guarda contexto
+00005b 93ef                        push ZL        
+00005c 920f                        push r0        
+00005d b60f                        in r0,SREG   
+00005e 920f                        push r0      
                                  
-00003c e0f0                        ldi  ZH,HIGH(Tabela<<1) 
-00003d e9e8                        ldi  ZL,LOW(Tabela<<1)  
-00003e 0fe0                        add  ZL,R16             
-00003f f408                        brcc le_tab             
-000040 95f3                        inc  ZH    
+00005f e0f0                        ldi  ZH,HIGH(Tabela<<1) 
+000060 edee                        ldi  ZL,LOW(Tabela<<1)  
+000061 0fe0                        add  ZL,R16             
+000062 f408                        brcc le_tab             
+000063 95f3                        inc  ZH    
                                  
                                  le_tab:     
-000041 9004                        lpm  R0,Z      ; Lê tabela de decoficação
+000064 9004                        lpm  R0,Z      ; Lê tabela de decoficação
                                  
-000042 9a44                        sbi PORTC, PC4 ; Escreve G
-000043 fe06                        sbrs R0, 6
-000044 9844                        cbi PORTC, PC4
+000065 9a44                        sbi PORTC, PC4 ; Escreve G
+000066 fe06                        sbrs R0, 6
+000067 9844                        cbi PORTC, PC4
                                  
-000045 b805                        out PORTB, R0  ; Escreve A .. F      
+000068 b805                        out PORTB, R0  ; Escreve A .. F      
                                  
-000046 900f                        pop r0         ; Recupera contexto
-000047 be0f                        out SREG, r0
-000048 900f                        pop r0
-000049 91ef                        pop ZL
-00004a 91ff                        pop ZH    
+000069 900f                        pop r0         ; Recupera contexto
+00006a be0f                        out SREG, r0
+00006b 900f                        pop r0
+00006c 91ef                        pop ZL
+00006d 91ff                        pop ZH    
                                  
-00004b 9508                        ret
+00006e 9508                        ret
                                  
                                  ;---------------------------------------------------------------------------
                                  ;   Tabela p/ decodificar o display: como cada endereço da memória flash é 
                                  ; de 16 bits, acessa-se a parte baixa e alta na decodificação
                                  ;---------------------------------------------------------------------------
-00004c 7940
-00004d 3024
-00004e 1219
-00004f 7802
-000050 1800
-000051 0308
-000052 2146
-000053 0e06                      Tabela: .dw 0x7940, 0x3024, 0x1219, 0x7802, 0x1800, 0x0308, 0x2146, 0x0E06
+00006f 7940
+000070 3024
+000071 1219
+000072 7802
+000073 1800
+000074 0308
+000075 2146
+000076 0e06                      Tabela: .dw 0x7940, 0x3024, 0x1219, 0x7802, 0x1800, 0x0308, 0x2146, 0x0E06
                                  ;             1 0     3 2     5 4     7 6     9 8     B A     D C     F E  
                                  ;===========================================================================
-                                 
-                                 
-                                 
+                                  
+                                  
+                                  
                                  ;---------------------------------------------------------------
                                  ;SUB-ROTINA DE ATRASO Programável
                                  ; Descrição: Depende do valor de R19 carregado antes da chamada.
                                  ; Exemplos:  - R19 = 16 --> 200ms 
                                  ;            - R19 = 80 --> 1s 
                                  ;---------------------------------------------------------------
-                                 delay:           
-000054 931f                        push r17       ; Salva os valores de r17,
-000055 932f                        push r18       ; ... r18,
-000056 b71f                        in r17,SREG    ; ...
-000057 931f                        push r17       ; ... e SREG na pilha.
-                                 
-                                   ; Executa sub-rotina :
-000058 2711                        clr r17
-000059 2722                        clr r18
-                                 loop:            
-00005a 951a                        dec  R17       ;decrementa R17, começa com 0x00
-00005b f7f1                        brne loop      ;enquanto R17 > 0 fica decrementando R17
-00005c 952a                        dec  R18       ;decrementa R18, começa com 0x00
-00005d f7e1                        brne loop      ;enquanto R18 > 0 volta decrementar R18
-00005e 953a                        dec  R19       ;decrementa R19
-00005f f7d1                        brne loop      ;enquanto R19 > 0 vai para volta
-                                 
-000060 911f                        pop r17         
-000061 bf1f                        out SREG, r17  ; Restaura os valores de SREG,
-000062 912f                        pop r18        ; ... r18
-000063 911f                        pop r17        ; ... r17 da pilha
-                                 
-000064 9508                        ret
+                                 ;delay:           
+                                 ;  push r17	     ; Salva os valores de r17,
+                                 ;  push r18	     ; ... r18,
+                                 ;  in r17,SREG    ; ...
+                                 ;  push r17       ; ... e SREG na pilha.
+                                 ;
+                                 ;  ; Executa sub-rotina :
+                                 ;  clr r17
+                                 ;  clr r18
+                                 ;loop:            
+                                 ;  dec  R17       ;decrementa R17, começa com 0x00
+                                 ;  brne loop      ;enquanto R17 > 0 fica decrementando R17
+                                 ;  dec  R18       ;decrementa R18, começa com 0x00
+                                 ;  brne loop      ;enquanto R18 > 0 volta decrementar R18
+                                 ;  dec  R19       ;decrementa R19
+                                 ;  brne loop      ;enquanto R19 > 0 vai para volta
+                                 ;
+                                 ;  pop r17         
+                                 ;  out SREG, r17  ; Restaura os valores de SREG,
+                                 ;  pop r18        ; ... r18
+                                 ;  pop r17        ; ... r17 da pilha
+                                 ;
 
 
 RESOURCE USE INFORMATION
@@ -1222,40 +1207,40 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega328P" register use summary:
-x  :   3 y  :   0 z  :   1 r0 :   9 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   0 z  :   1 r0 :   9 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  22 r17:  14 r18:   4 r19:   2 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   2 r27:   2 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  13 r17:   6 r18:   0 r19:   0 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   4 r31:   4 
-Registers used: 11 out of 35 (31.4%)
+Registers used: 6 out of 35 (17.1%)
 
 "ATmega328P" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   1 adiw  :   1 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   1 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   1 brcs  :   0 break :   0 breq  :   0 brge  :   1 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   1 brlt  :   0 brmi  :   0 
-brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brcc  :   1 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
+brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   2 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   3 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   2 cpse  :   0 dec   :   4 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   2 jmp   :   0 
-ld    :   1 ldd   :   0 ldi   :  11 lds   :   1 lpm   :   2 lsl   :   0 
+cpi   :   2 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   3 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :   6 lds   :   1 lpm   :   2 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   8 pop   :  10 
-push  :  10 rcall :   7 ret   :   8 reti  :   0 rjmp  :   1 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   2 sbic  :   0 sbis  :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   5 pop   :   4 
+push  :   4 rcall :   3 ret   :   1 reti  :   2 rjmp  :   4 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   7 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   1 sec   :   0 seh   :   0 
-sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   1 std   :   0 sts   :   3 
+sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   3 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 26 out of 113 (23.0%)
+Instructions used: 22 out of 113 (19.5%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000ca    186     16    202   32768   0.6%
-[.dseg] 0x000100 0x00010b      0     11     11    2048   0.5%
+[.cseg] 0x000000 0x0000ee    124     16    140   32768   0.4%
+[.dseg] 0x000100 0x000101      0      1      1    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
 Assembly complete, 0 errors, 0 warnings

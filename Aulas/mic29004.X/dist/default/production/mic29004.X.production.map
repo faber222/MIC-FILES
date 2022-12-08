@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  AI2_PILHA.asm Tue Dec  6 11:50:20 2022
+AVRASM ver. 2.2.7  AI2_INTERRUPCAO.asm Thu Dec  8 10:35:12 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,21 +695,15 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-DSEG A1           00000100
-DSEG count        0000010a
+EQU  BOTAO        00000002
 DEF  AUX          r16
-EQU  DP           00000005
-CSEG setup        00000000
-CSEG startA1      0000001e
-CSEG ssd_init     0000002a
-CSEG loopLED1     00000008
-CSEG ssd_write_x  00000030
-CSEG delay        00000054
-CSEG loopResetado 00000027
-CSEG loop10       00000020
-CSEG ssd_decode   00000037
-CSEG ssd_dp_on    00000033
-CSEG ssd_dp_off   00000035
-CSEG Tabela       0000004c
-CSEG le_tab       00000041
-CSEG loop         0000005a
+DSEG count        00000100
+CSEG setup        00000034
+CSEG isr_int0     00000057
+CSEG isr_tc0b     00000049
+CSEG main         00000048
+CSEG ssd_decode   0000005a
+CSEG tempo        0000004e
+CSEG fim          00000054
+CSEG Tabela       0000006f
+CSEG le_tab       00000064

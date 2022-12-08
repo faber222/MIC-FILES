@@ -91,7 +91,7 @@ isr_tc0b:
     
     lds AUX, count
     inc AUX	    ; incrementa o contador
-    cpi AUX, 62   ; verifica se é 62
+    cpi AUX, 128	    ; verifica se é 62
     brne fim	    ; se não for igual, salta para o fim
     
     sbi PINB, L0    ; inverte o estado do LED depois de entrar 62 vezes
