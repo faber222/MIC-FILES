@@ -40,12 +40,9 @@ setup:
     cbi DDRD, BOTAO2 ; configura o PD2 como entrada
     sbi PORTD, BOTAO2 ; liga o pull-up do PD2
 
-    LDI AUX, 0b00000010 ;
+    LDI AUX, 0b00001010 ;
     STS EICRA, AUX ; config. INT0 sensivel a borda
     SBI EIMSK, INT0 ; habilita a INT0
-    
-    LDI AUX, 0b00001000 ;
-    STS EICRA, AUX ; config. INT1 sensivel a borda
     SBI EIMSK, INT1 ; habilita a INT1
     
     LDI AUX, 0b00000101   ;TC0 com prescaler de 1024, a 16 MHz gera
@@ -118,6 +115,6 @@ cont:
   
   CLR ZH
   CLR ZL
-  OUT SREG, R28
+;  OUT SREG, R28 Foi comentado devido a matar o uso das interrupcoes
   
   ret

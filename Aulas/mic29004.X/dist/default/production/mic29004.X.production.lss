@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:51:34 2022
+AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:58:32 2022
 
 [builtin](2): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
 AA_TEMPORIZADOR.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc'
@@ -1053,13 +1053,13 @@ AA_TEMPORIZADOR.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microc
 000000 c033                          RJMP setup
                                  
                                  .ORG 0x0002 ; Vetor (endereco na Flash) da INT1
-000002 c050                          RJMP isr_int0
+000002 c04d                          RJMP isr_int0
                                  
                                  .ORG 0x0004 ; Vetor (endereco na Flash) da INT1
-000004 c046                          RJMP isr_int1    
+000004 c043                          RJMP isr_int1    
                                  
                                  .ORG 0x0020
-000020 c03a                          RJMP isr_tc0b
+000020 c037                          RJMP isr_tc0b
                                      
                                  .ORG 0x0034 ; primeira end. livre depois dos vetores
                                  setup:
@@ -1071,85 +1071,82 @@ AA_TEMPORIZADOR.asm(1): Including file '/opt/microchip/mplabx/v5.50/packs/Microc
 000039 9852                          cbi DDRD, BOTAO2 ; configura o PD2 como entrada
 00003a 9a5a                          sbi PORTD, BOTAO2 ; liga o pull-up do PD2
                                  
-00003b e002                          LDI AUX, 0b00000010 ;
+00003b e00a                          LDI AUX, 0b00001010 ;
 00003c 9300 0069                     STS EICRA, AUX ; config. INT0 sensivel a borda
 00003e 9ae8                          SBI EIMSK, INT0 ; habilita a INT0
+00003f 9ae9                          SBI EIMSK, INT1 ; habilita a INT1
                                      
-00003f e008                          LDI AUX, 0b00001000 ;
-000040 9300 0069                     STS EICRA, AUX ; config. INT1 sensivel a borda
-000042 9ae9                          SBI EIMSK, INT1 ; habilita a INT1
-                                     
-000043 e005                          LDI AUX, 0b00000101   ;TC0 com prescaler de 1024, a 16 MHz gera
-000044 bd05                          OUT TCCR0B, AUX	    ; uma interrupcaoo a cada 16,384 ms
-000045 e001                          LDI AUX, 1
-000046 9300 006e                     STS TIMSK0, AUX	    ; habilita int. do TC0B (TIMSK0(0) =TOIE0 <- 1)
+000040 e005                          LDI AUX, 0b00000101   ;TC0 com prescaler de 1024, a 16 MHz gera
+000041 bd05                          OUT TCCR0B, AUX	    ; uma interrupcaoo a cada 16,384 ms
+000042 e001                          LDI AUX, 1
+000043 9300 006e                     STS TIMSK0, AUX	    ; habilita int. do TC0B (TIMSK0(0) =TOIE0 <- 1)
                                  
-000048 9478                          SEI ; habilita a interrupcao global ...
+000045 9478                          SEI ; habilita a interrupcao global ...
                                  ; ... (bit I do SREG)
                                      
                                  main:
-000049 d021                          rcall teste
-00004a cffe                          rjmp main
+000046 d021                          rcall teste
+000047 cffe                          rjmp main
                                  
                                  ;-------------------------------------------------
                                  ; Rotina de Interrupcao (ISR) da INT0
                                  ;-------------------------------------------------
                                  isr_int1:
-00004b 930f                          push AUX ; Salva o contexto (SREG)
-00004c b70f                          in AUX, SREG
-00004d 930f                          push AUX
-00004e 9a29                          sbi PORTB,L1 ; desliga L1
-00004f 910f                          pop AUX ; Restaura o contexto (SREG)
-000050 bf0f                          out SREG,AUX
-000051 910f                          pop AUX
-000052 9518                          reti ; retorna da interrupcao
+000048 930f                          push AUX ; Salva o contexto (SREG)
+000049 b70f                          in AUX, SREG
+00004a 930f                          push AUX
+00004b 9a29                          sbi PORTB,L1 ; desliga L1
+00004c 910f                          pop AUX ; Restaura o contexto (SREG)
+00004d bf0f                          out SREG,AUX
+00004e 910f                          pop AUX
+00004f 9518                          reti ; retorna da interrupcao
                                  
                                  
                                  isr_int0:
-000053 930f                          push AUX ; Salva o contexto (SREG)
-000054 b70f                          in AUX, SREG
-000055 930f                          push AUX
-000056 9829                          cbi PORTB,L1 ; liga L1
-000057 910f                          pop AUX ; Restaura o contexto (SREG)
-000058 bf0f                          out SREG,AUX
-000059 910f                          pop AUX
-00005a 9518                          reti ; retorna da interrupcao
+000050 930f                          push AUX ; Salva o contexto (SREG)
+000051 b70f                          in AUX, SREG
+000052 930f                          push AUX
+000053 9829                          cbi PORTB,L1 ; liga L1
+000054 910f                          pop AUX ; Restaura o contexto (SREG)
+000055 bf0f                          out SREG,AUX
+000056 910f                          pop AUX
+000057 9518                          reti ; retorna da interrupcao
                                  
                                  isr_tc0b:
-00005b 930f                          push AUX ; Salva o contexto (SREG)
-00005c b70f                          in AUX, SREG
-00005d 930f                          push AUX
+000058 930f                          push AUX ; Salva o contexto (SREG)
+000059 b70f                          in AUX, SREG
+00005a 930f                          push AUX
                                      
-00005e 9100 0100                     lds AUX, count
-000060 9503                          inc AUX	    ; incrementa o contador
-000061 330e                          cpi AUX, 62   ; verifica se é 62
-000062 f411                          brne fim	    ; se não for igual, salta para o fim
+00005b 9100 0100                     lds AUX, count
+00005d 9503                          inc AUX	    ; incrementa o contador
+00005e 330e                          cpi AUX, 62   ; verifica se é 62
+00005f f411                          brne fim	    ; se não for igual, salta para o fim
                                      
-000063 9a18                          sbi PINB, L0    ; inverte o estado do LED depois de entrar 62 vezes
+000060 9a18                          sbi PINB, L0    ; inverte o estado do LED depois de entrar 62 vezes
                                  		    ; na interrupcao: 62 * 16,384 ms = 1.015,81ms
-000064 e000                          ldi AUX,0
+000061 e000                          ldi AUX,0
                                  
                                  fim:
-000065 9300 0100                     sts  count, AUX
-000067 910f                          pop AUX ; Restaura o contexto (SREG)
-000068 bf0f                          out SREG,AUX
-000069 910f                          pop AUX
-00006a 9518                          reti
+000062 9300 0100                     sts  count, AUX
+000064 910f                          pop AUX ; Restaura o contexto (SREG)
+000065 bf0f                          out SREG,AUX
+000066 910f                          pop AUX
+000067 9518                          reti
                                      
                                  teste:
-00006b 27ff                        CLR ZH
-00006c 27ee                        CLR ZL
-00006d e1dd                        LDI R29, 29
-00006e 27cc                        CLR R28
+000068 27ff                        CLR ZH
+000069 27ee                        CLR ZL
+00006a e1dd                        LDI R29, 29
+00006b 27cc                        CLR R28
                                  cont:
-00006f 93c1                        ST Z+,R28
-000070 95da                        DEC R29
-000071 30d0                        CPI R29, 0
-000072 f7e1                        BRNE cont
+00006c 93c1                        ST Z+,R28
+00006d 95da                        DEC R29
+00006e 30d0                        CPI R29, 0
+00006f f7e1                        BRNE cont
                                    
-000073 27ff                        CLR ZH
-000074 27ee                        CLR ZL
-000075 bfcf                        OUT SREG, R28
+000070 27ff                        CLR ZH
+000071 27ee                        CLR ZL
+000072 bfcf                        OUT SREG, R28
                                    
 
 
@@ -1170,7 +1167,7 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  34 r17:   0 r18:   0 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:  32 r17:   0 r18:   0 r19:   0 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   3 
 r29:   3 r30:   2 r31:   2 
 Registers used: 6 out of 35 (17.1%)
@@ -1186,21 +1183,21 @@ clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   5 cls   :   0
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   2 cpse  :   0 dec   :   1 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   1 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   7 lds   :   1 lpm   :   0 lsl   :   0 
+ld    :   0 ldd   :   0 ldi   :   6 lds   :   1 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   7 pop   :   6 
 push  :   6 rcall :   1 ret   :   1 reti  :   3 rjmp  :   5 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   6 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   1 std   :   0 sts   :   4 
+sez   :   0 sleep :   0 spm   :   0 st    :   1 std   :   0 sts   :   3 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
 Instructions used: 20 out of 113 (17.7%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000ee    142      0    142   32768   0.4%
+[.cseg] 0x000000 0x0000e8    136      0    136   32768   0.4%
 [.dseg] 0x000100 0x000101      0      1      1    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

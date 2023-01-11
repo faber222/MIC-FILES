@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:51:29 2022
+AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:58:54 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -702,10 +702,10 @@ EQU  L1           00000001
 DEF  AUX          r16
 DSEG count        00000100
 CSEG setup        00000034
-CSEG isr_int0     00000053
-CSEG isr_int1     0000004b
-CSEG isr_tc0b     0000005b
-CSEG main         00000049
-CSEG teste        0000006b
-CSEG fim          00000065
-CSEG cont         0000006f
+CSEG isr_int0     00000050
+CSEG isr_int1     00000048
+CSEG isr_tc0b     00000058
+CSEG main         00000046
+CSEG teste        00000068
+CSEG fim          00000062
+CSEG cont         0000006c

@@ -23,12 +23,12 @@
  <LABELS>
   <count><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>17</LINE></count>
   <setup><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>34</LINE></setup>
-  <isr_int0><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>77</LINE></isr_int0>
-  <isr_int1><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>66</LINE></isr_int1>
-  <isr_tc0b><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>87</LINE></isr_tc0b>
-  <main><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>59</LINE></main>
-  <teste><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>108</LINE></teste>
-  <fim><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>101</LINE></fim>
-  <cont><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>113</LINE></cont>
+  <isr_int0><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>74</LINE></isr_int0>
+  <isr_int1><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>63</LINE></isr_int1>
+  <isr_tc0b><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>84</LINE></isr_tc0b>
+  <main><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>56</LINE></main>
+  <teste><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>105</LINE></teste>
+  <fim><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>98</LINE></fim>
+  <cont><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>110</LINE></cont>
  </LABELS>
 </ASSEMBLER_INFO>
