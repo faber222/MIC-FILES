@@ -1,12 +1,12 @@
 <ASSEMBLER_INFO>
  <VERSION>2.2.7</VERSION>
  <DEVICE>"ATmega328P"</DEVICE>
- <WORKING_DIR>/home/faber222/Documents/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
+ <WORKING_DIR>/home/aluno/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>AA_TEMPORIZADOR.asm</SOURCE_FILE>
+ <SOURCE_FILE>AI2_INTERRUPCAO.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -21,6 +21,7 @@
   <FILE>dist/default/production/mic29004.X.production.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
+<<<<<<< HEAD
   <count><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>17</LINE></count>
   <setup><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>34</LINE></setup>
   <isr_int0><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>74</LINE></isr_int0>
@@ -30,5 +31,17 @@
   <teste><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>105</LINE></teste>
   <fim><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>98</LINE></fim>
   <cont><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>110</LINE></cont>
+=======
+  <count><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>9</LINE></count>
+  <setup><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>25</LINE></setup>
+  <isr_int0><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>76</LINE></isr_int0>
+  <isr_tc0b><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>58</LINE></isr_tc0b>
+  <main><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>55</LINE></main>
+  <ssd_decode><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>87</LINE></ssd_decode>
+  <tempo><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>64</LINE></tempo>
+  <fim><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>71</LINE></fim>
+  <Tabela><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>121</LINE></Tabela>
+  <le_tab><FILE>AI2_INTERRUPCAO.asm</FILE><LINE>100</LINE></le_tab>
+>>>>>>> 655424c58f3a5e8c45d6de8b7d2d9e39f65d5dcd
  </LABELS>
 </ASSEMBLER_INFO>

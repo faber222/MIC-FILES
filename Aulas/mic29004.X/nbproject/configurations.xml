@@ -12,7 +12,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>AA_TEMPORIZADOR.asm</itemPath>
+      <itemPath>AI_int_tc_FaberBernardoJunior.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -30,7 +30,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>Simulator</platformTool>
         <languageToolchain>AVRASM</languageToolchain>
-        <languageToolchainVersion>2.2.7</languageToolchainVersion>
+        <languageToolchainVersion>5.4.0</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <packs>
@@ -1017,7 +1017,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>Simulator</platformTool>
         <languageToolchain>AVRASM</languageToolchain>
-        <languageToolchainVersion>2.2.7</languageToolchainVersion>
+        <languageToolchainVersion>5.4.0</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <packs>

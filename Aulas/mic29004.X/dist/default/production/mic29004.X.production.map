@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:58:32 2022
+=======
+AVRASM ver. 2.2.7  AI2_INTERRUPCAO.asm Thu Dec  8 10:35:12 2022
+>>>>>>> 655424c58f3a5e8c45d6de8b7d2d9e39f65d5dcd
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,13 +699,11 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-EQU  BOTAO        00000003
-EQU  BOTAO2       00000002
-EQU  L0           00000000
-EQU  L1           00000001
+EQU  BOTAO        00000002
 DEF  AUX          r16
 DSEG count        00000100
 CSEG setup        00000034
+<<<<<<< HEAD
 CSEG isr_int0     00000050
 CSEG isr_int1     00000048
 CSEG isr_tc0b     00000058
@@ -709,3 +711,13 @@ CSEG main         00000046
 CSEG teste        00000068
 CSEG fim          00000062
 CSEG cont         0000006c
+=======
+CSEG isr_int0     00000057
+CSEG isr_tc0b     00000049
+CSEG main         00000048
+CSEG ssd_decode   0000005a
+CSEG tempo        0000004e
+CSEG fim          00000054
+CSEG Tabela       0000006f
+CSEG le_tab       00000064
+>>>>>>> 655424c58f3a5e8c45d6de8b7d2d9e39f65d5dcd

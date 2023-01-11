@@ -1,12 +1,12 @@
 <ASSEMBLER_INFO>
  <VERSION>2.2.7</VERSION>
  <DEVICE>"ATmega328P"</DEVICE>
- <WORKING_DIR>/home/faber222/Documents/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
+ <WORKING_DIR>/home/aluno/faber/MIC-FILES/Aulas/mic29004.X</WORKING_DIR>
  <INCLUDE_PATH>
   <DIR>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc</DIR>
   <DIR></DIR>
  </INCLUDE_PATH>
- <SOURCE_FILE>AA_TEMPORIZADOR.asm</SOURCE_FILE>
+ <SOURCE_FILE>AI_int_tc_FaberBernardoJunior.asm</SOURCE_FILE>
  <INCLUDED_FILES>
   <FILE>/opt/microchip/mplabx/v5.50/packs/Microchip/ATmega_DFP/2.3.126/avrasm/inc/m328Pdef.inc</FILE>
  </INCLUDED_FILES>
@@ -20,6 +20,7 @@
   <FILE>dist/programming/production/mic29004.X.production.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
+<<<<<<< HEAD
   <count><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>17</LINE></count>
   <setup><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>34</LINE></setup>
   <isr_int0><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>74</LINE></isr_int0>
@@ -29,5 +30,17 @@
   <teste><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>105</LINE></teste>
   <fim><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>98</LINE></fim>
   <cont><FILE>AA_TEMPORIZADOR.asm</FILE><LINE>110</LINE></cont>
+=======
+  <countTime><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>9</LINE></countTime>
+  <countNum><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>10</LINE></countNum>
+  <setup><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>25</LINE></setup>
+  <isr_int0><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>83</LINE></isr_int0>
+  <isr_tc0b><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>60</LINE></isr_tc0b>
+  <main><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>57</LINE></main>
+  <fim><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>75</LINE></fim>
+  <ssd_decode><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>94</LINE></ssd_decode>
+  <Tabela><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>128</LINE></Tabela>
+  <le_tab><FILE>AI_int_tc_FaberBernardoJunior.asm</FILE><LINE>107</LINE></le_tab>
+>>>>>>> 655424c58f3a5e8c45d6de8b7d2d9e39f65d5dcd
  </LABELS>
 </ASSEMBLER_INFO>

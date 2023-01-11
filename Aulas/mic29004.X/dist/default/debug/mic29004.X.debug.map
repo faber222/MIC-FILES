@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  AA_TEMPORIZADOR.asm Thu Dec  1 11:09:56 2022
+AVRASM ver. 2.2.7  AI2_PILHA.asm Tue Dec  6 11:40:55 2022
 
 
 EQU  SIGNATURE_000 0000001e
@@ -695,15 +695,21 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-EQU  BOTAO        00000003
-EQU  BOTAO2       00000002
-EQU  L0           00000000
-EQU  L1           00000001
+DSEG A1           00000100
+DSEG count        0000010a
 DEF  AUX          r16
-DSEG count        00000100
-CSEG setup        00000034
-CSEG isr_int0     00000054
-CSEG isr_int1     0000004c
-CSEG isr_tc0b     0000005c
-CSEG main         0000004b
-CSEG fim          0000006a
+EQU  DP           00000005
+CSEG setup        00000000
+CSEG startA1      0000001e
+CSEG ssd_init     0000002a
+CSEG loopLED1     00000008
+CSEG ssd_write_x  00000030
+CSEG delay        00000053
+CSEG loopResetado 00000027
+CSEG loop10       00000020
+CSEG ssd_decode   00000036
+CSEG ssd_dp_on    00000032
+CSEG ssd_dp_off   00000034
+CSEG Tabela       0000004b
+CSEG le_tab       00000040
+CSEG loop         00000059
